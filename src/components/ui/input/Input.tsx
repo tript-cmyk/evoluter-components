@@ -152,15 +152,18 @@ export const Input = React.forwardRef<
       countryOptions.find((c) => c.code === selectedCountryCode) ||
       countryOptions[0];
 
-    const isPasswordType = type === "password";
+    const isPasswordType = type === INPUT_TYPE.PASSWORD;
     const resolvedInputType = isPasswordType
       ? showPassword
-        ? "text"
-        : "password"
+        ? INPUT_TYPE.TEXT
+        : INPUT_TYPE.PASSWORD
       : type;
 
     const isClearButtonVisible =
-      (clearable || type === "search" || type === "tel" || isPasswordType) &&
+      (clearable ||
+        type === INPUT_TYPE.SEARCH ||
+        type === INPUT_TYPE.TEL ||
+        isPasswordType) &&
       activeValue.length > 0 &&
       !disabled &&
       !processing;
@@ -190,7 +193,7 @@ export const Input = React.forwardRef<
         {label && <InputLabel required={required}>{label}</InputLabel>}
 
         <InputWrapper className={wrapperClassName}>
-          {type === "tel" && (
+          {type === INPUT_TYPE.TEL && (
             <div
               ref={dropdownRef}
               className="relative flex items-center self-stretch h-full mr-2.5"
@@ -230,10 +233,9 @@ export const Input = React.forwardRef<
                           "bg-[#282828] font-semibold text-[#ABFFC3]",
                       )}
                     >
-                      {c.code && c.code.length === 2 ? (
+                      {c.code ? (
                         <img
-                          src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
-                          srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+                          src={flagUrl(c.code)}
                           width="20"
                           alt={c.name}
                           className="object-contain rounded-xs shrink-0"
@@ -254,7 +256,7 @@ export const Input = React.forwardRef<
             </div>
           )}
 
-          {type === "search" && !leftIcon && (
+          {type === INPUT_TYPE.SEARCH && !leftIcon && (
             <InputAddon position={ADDON_POSITION.LEFT}>
               <FiSearch className="w-4 h-4 text-[#808080]" />
             </InputAddon>
@@ -319,14 +321,18 @@ export const Input = React.forwardRef<
 
             {!multiline &&
               computedStatus === INPUT_STATUS.SUCCESS &&
-              (type === "search" || type === "tel" || rightIcon) && (
+              (type === INPUT_TYPE.SEARCH ||
+                type === INPUT_TYPE.TEL ||
+                rightIcon) && (
                 <div className="text-[#40A05B] flex items-center justify-center">
                   <FiCheckCircle className="w-4 h-4 shrink-0 text-[#ABFFC3]" />
                 </div>
               )}
             {!multiline &&
               computedStatus === INPUT_STATUS.ERROR &&
-              (type === "search" || type === "tel" || rightIcon) && (
+              (type === INPUT_TYPE.SEARCH ||
+                type === INPUT_TYPE.TEL ||
+                rightIcon) && (
                 <div className="text-[#FF5C5C] flex items-center justify-center">
                   <FiAlertTriangle className="w-4 h-4 shrink-0 text-[#FF5C5C]" />
                 </div>

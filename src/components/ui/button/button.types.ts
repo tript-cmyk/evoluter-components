@@ -2,27 +2,28 @@ import * as React from "react";
 import { type VariantProps } from "class-variance-authority";
 import type { buttonVariants } from "./button.variants";
 
-export const ButtonVariant = {
+export const BUTTON_VARIANT = {
   PRIMARY_WHITE: "primaryWhite",
   PRIMARY_DARK: "primaryDark",
   SECONDARY_DARK: "secondaryDark",
   TEXT_DARK: "textDark",
   TEXT_WHITE: "textWhite",
 } as const;
-export type ButtonVariant = (typeof ButtonVariant)[keyof typeof ButtonVariant];
+export type ButtonVariant =
+  (typeof BUTTON_VARIANT)[keyof typeof BUTTON_VARIANT];
 
-export const ButtonSize = {
+export const BUTTON_SIZE = {
   XL: "xl",
   LARGE: "large",
   SMALL: "small",
 } as const;
-export type ButtonSize = (typeof ButtonSize)[keyof typeof ButtonSize];
+export type ButtonSize = (typeof BUTTON_SIZE)[keyof typeof BUTTON_SIZE];
 
-export const IconPosition = {
+export const ICON_POSITION = {
   LEFT: "left",
   RIGHT: "right",
 } as const;
-export type IconPosition = (typeof IconPosition)[keyof typeof IconPosition];
+export type IconPosition = (typeof ICON_POSITION)[keyof typeof ICON_POSITION];
 
 export interface ButtonProps
   extends

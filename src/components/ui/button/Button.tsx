@@ -1,6 +1,6 @@
 import { FiLoader } from "react-icons/fi";
 import { fillVariants, buttonVariants } from "./button.variants";
-import { type ButtonProps } from "./button.types";
+import { ICON_POSITION, type ButtonProps } from "./button.types";
 import { cn } from "../../../lib/cn";
 
 export function Button({
@@ -9,7 +9,7 @@ export function Button({
   size,
   className,
   icon,
-  iconPosition = "left",
+  iconPosition = ICON_POSITION.LEFT,
   iconOnly,
   processing = false,
   disabled = false,
@@ -42,11 +42,11 @@ export function Button({
           displayIcon
         ) : (
           <>
-            {iconPosition === "left" && displayIcon}
+            {iconPosition === ICON_POSITION.LEFT && displayIcon}
 
             {children && <span>{children}</span>}
 
-            {iconPosition === "right" && displayIcon}
+            {iconPosition === ICON_POSITION.RIGHT && displayIcon}
           </>
         )}
       </span>
