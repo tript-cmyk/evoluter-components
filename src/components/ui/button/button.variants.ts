@@ -1,9 +1,6 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { FiLoader } from "react-icons/fi";
-import { cn } from "../lib/utils";
+import { cva } from "class-variance-authority";
 
-const fillVariants = cva(
+export const fillVariants = cva(
   [
     "absolute inset-0",
     "-z-0",
@@ -30,7 +27,7 @@ const fillVariants = cva(
   },
 );
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   [
     "relative overflow-hidden group",
     "inline-flex items-center justify-center gap-2",
@@ -128,67 +125,3 @@ const buttonVariants = cva(
     },
   },
 );
-
-export interface ButtonProps
-  extends
-    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "disabled">,
-    Omit<VariantProps<typeof buttonVariants>, "disabled" | "processing"> {
-  icon?: React.ReactNode;
-  iconPosition?: "left" | "right";
-  disabled?: boolean;
-  processing?: boolean;
-}
-
-export function Button({
-  children,
-  variant,
-  size,
-  className,
-  icon,
-  iconPosition = "left",
-  iconOnly,
-  processing = false,
-  disabled = false,
-  ...props
-}: ButtonProps) {
-  const isDisabled = processing || disabled;
-
-  const displayIcon = processing ? (
-    <FiLoader className="h-4 w-4 animate-spin" />
-  ) : (
-    icon
-  );
-
-  return (
-    <button
-      disabled={isDisabled}
-      className={cn(
-        buttonVariants({
-          variant,
-          size,
-          processing,
-          disabled,
-          iconOnly,
-        }),
-        className,
-      )}
-      {...props}
-    >
-      <span className={fillVariants({ variant })} />
-
-      <span className="relative z-10 inline-flex items-center gap-2">
-        {iconOnly ? (
-          displayIcon
-        ) : (
-          <>
-            {iconPosition === "left" && displayIcon}
-
-            {children && <span>{children}</span>}
-
-            {iconPosition === "right" && displayIcon}
-          </>
-        )}
-      </span>
-    </button>
-  );
-}

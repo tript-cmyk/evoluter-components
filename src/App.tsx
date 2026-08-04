@@ -1,19 +1,18 @@
-import { Button } from "./components/Button";
-import { GoPlus } from "react-icons/go";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ButtonDemoPage from "./pages/ButtonDemo/ButtonDemoPage";
+import InputDemoPage from "./pages/InputDemo/InputDemoPage";
 
 function App() {
   return (
-    <div className="bg-[#141414] min-h-screen flex items-center justify-center">
-      <Button
-        variant="primaryWhite"
-        size="small"
-        processing
-        iconOnly
-        icon={<GoPlus />}
-        // iconPosition="left"
-      >
-        Button Text
-      </Button>
+    <div className="bg-black min-h-screen text-[#E0E0E0] font-sans antialiased">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/buttons" replace />} />
+          <Route path="/buttons" element={<ButtonDemoPage />} />
+          <Route path="/inputs" element={<InputDemoPage />} />
+          <Route path="*" element={<Navigate to="/buttons" replace />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
