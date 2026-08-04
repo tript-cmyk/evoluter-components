@@ -160,7 +160,7 @@ export function InputWrapper({
           "border-[#333333] hover:border-[#444444] focus-within:border-[#ABFFC3] focus-within:shadow-[0_0_8px_rgba(171,255,195,0.15)]",
         status === INPUT_STATUS.ACTIVE &&
           "border-[#ABFFC3] shadow-[0_0_8px_rgba(171,255,195,0.15)]",
-        status === INPUT_STATUS.SUCCESS && 
+        status === INPUT_STATUS.SUCCESS &&
           "border-[#40A05B] focus-within:border-[#40A05B]",
         status === INPUT_STATUS.ERROR &&
           "border-[#FF5C5C] shadow-[0_0_8px_rgba(255,92,92,0.08)] focus-within:border-[#FF5C5C]",
@@ -187,6 +187,7 @@ export const InputField = React.forwardRef<
   InputFieldProps
 >(({ className, onFocus, onBlur, ...props }, ref) => {
   const {
+    status,
     multiline,
     value,
     onChangeValue,
@@ -195,6 +196,8 @@ export const InputField = React.forwardRef<
     charactersLimit,
     charactersPlacement,
   } = useInputContext();
+
+  const isInputDisabled = disabled || status === INPUT_STATUS.PROCESSING;
 
   const handleFocus = (e: React.FocusEvent<any>) => {
     setFocused(true);
@@ -220,7 +223,7 @@ export const InputField = React.forwardRef<
     "w-full bg-transparent border-0 outline-none text-[#FFF] placeholder:text-[#575757]",
     "text-sm font-normal antialiased tracking-wide transition-colors",
     "focus:outline-none focus:ring-0",
-    disabled && "cursor-not-allowed text-[#808080]",
+    isInputDisabled && "cursor-not-allowed text-[#808080]",
     className,
   );
 
@@ -240,7 +243,7 @@ export const InputField = React.forwardRef<
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          disabled={disabled}
+          disabled={isInputDisabled}
           {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
         />
         {showBottomCharCount && (
@@ -263,7 +266,7 @@ export const InputField = React.forwardRef<
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      disabled={disabled}
+      disabled={isInputDisabled}
       {...props}
     />
   );

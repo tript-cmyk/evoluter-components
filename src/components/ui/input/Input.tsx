@@ -17,7 +17,7 @@ import {
   ADDON_POSITION,
   type InputProps,
 } from "./input.types";
-import { defaultCountries } from "./input.utils";
+import { defaultCountries, flagUrl } from "./input.utils";
 import {
   InputRoot,
   InputLabel,
@@ -162,7 +162,8 @@ export const Input = React.forwardRef<
     const isClearButtonVisible =
       (clearable || type === "search" || type === "tel" || isPasswordType) &&
       activeValue.length > 0 &&
-      !disabled;
+      !disabled &&
+      !processing;
 
     return (
       <InputRoot
@@ -196,17 +197,16 @@ export const Input = React.forwardRef<
             >
               <button
                 type="button"
-                disabled={disabled}
+                disabled={disabled || !!processing}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={cn(
                   "flex items-center gap-1.5 text-sm font-medium text-[#FFF] hover:opacity-85 transition-opacity h-full focus:outline-none",
-                  disabled && "opacity-50 cursor-not-allowed",
+                  (disabled || !!processing) && "opacity-50 cursor-not-allowed",
                 )}
               >
-                {activeCountry?.code && activeCountry.code.length === 2 ? (
+                {activeCountry?.code ? (
                   <img
-                    src={`https://flagcdn.com/w20/${activeCountry.code.toLowerCase()}.png`}
-                    srcSet={`https://flagcdn.com/w40/${activeCountry.code.toLowerCase()}.png 2x`}
+                    src={flagUrl(activeCountry.code)}
                     width="20"
                     alt={activeCountry.name}
                     className="object-contain rounded-xs shrink-0"
@@ -290,11 +290,11 @@ export const Input = React.forwardRef<
             {isPasswordType && (
               <button
                 type="button"
-                disabled={disabled}
+                disabled={disabled || !!processing}
                 onClick={toggleShowPassword}
                 className={cn(
                   "text-[#808080] hover:text-[#FFF] transition-colors focus:outline-none p-0.5",
-                  disabled && "opacity-50 cursor-not-allowed",
+                  (disabled || !!processing) && "opacity-50 cursor-not-allowed",
                 )}
               >
                 {showPassword ? (
