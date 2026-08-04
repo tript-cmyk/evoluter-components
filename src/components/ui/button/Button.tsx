@@ -1,6 +1,6 @@
 import { FiLoader } from "react-icons/fi";
 import { fillVariants, buttonVariants } from "./button.variants";
-import type { ButtonProps } from "./button.types";
+import { type ButtonProps } from "./button.types";
 import { cn } from "../../../lib/cn";
 
 export function Button({

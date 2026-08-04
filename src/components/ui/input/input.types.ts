@@ -1,18 +1,39 @@
 import * as React from "react";
 
-export type InputStatus =
-  | "default"
-  | "active"
-  | "success"
-  | "error"
-  | "disabled"
-  | "processing";
+export const INPUT_STATUS = {
+  DEFAULT: "default",
+  ACTIVE: "active",
+  SUCCESS: "success",
+  ERROR: "error",
+  DISABLED: "disabled",
+  PROCESSING: "processing",
+} as const;
+
+export type InputStatus = (typeof INPUT_STATUS)[keyof typeof INPUT_STATUS];
+
+export const INPUT_TYPE = {
+  TEXT: "text",
+  PASSWORD: "password",
+  TEL: "tel",
+  SEARCH: "search",
+} as const;
+
+export type InputType = (typeof INPUT_TYPE)[keyof typeof INPUT_TYPE];
 
 export interface CountryOption {
-  code: string;
-  flag: string;
   name: string;
+  flag: string;
+  code: string;
+  dial_code: string;
 }
+
+export const CHARACTERS_PLACEMENT = {
+  BOTTOM_LEFT: "bottom-left",
+  TOP_RIGHT: "top-right",
+} as const;
+
+export type CharactersPlacement =
+  (typeof CHARACTERS_PLACEMENT)[keyof typeof CHARACTERS_PLACEMENT];
 
 export interface InputBaseProps {
   status?: InputStatus;
@@ -27,13 +48,15 @@ export interface InputBaseProps {
   clearable?: boolean;
   onClear?: () => void;
   multiline?: boolean;
-  symbolsLimit?: number;
-  symbolsPlacement?: "bottom-left" | "top-right";
+  charactersLimit?: number;
+  charactersPlacement?: CharactersPlacement;
   countryCode?: string;
   onCountryCodeChange?: (code: string) => void;
   countryOptions?: CountryOption[];
   containerClassName?: string;
   wrapperClassName?: string;
+  showPassword?: boolean;
+  onShowPasswordChange?: (show: boolean) => void;
 }
 
 export type InputProps = Omit<
@@ -45,10 +68,18 @@ export type InputProps = Omit<
     "size" | "value" | "onChange"
   > &
   InputBaseProps & {
-    type?: string;
+    type?: InputType;
     value?: string;
     onChange?: (
       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => void;
   };
 export type { InputRootProps } from "./InputPrimitives";
+
+export const ADDON_POSITION = {
+  LEFT: "left",
+  RIGHT: "right",
+} as const;
+
+export type AddonPosition =
+  (typeof ADDON_POSITION)[keyof typeof ADDON_POSITION];

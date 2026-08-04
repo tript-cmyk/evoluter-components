@@ -7,9 +7,16 @@ import {
   FiChevronDown,
   FiCheckCircle,
   FiAlertTriangle,
+  FiLoader,
 } from "react-icons/fi";
 import { cn } from "../../../lib/cn";
-import type { InputProps } from "./input.types";
+import {
+  INPUT_STATUS,
+  INPUT_TYPE,
+  CHARACTERS_PLACEMENT,
+  ADDON_POSITION,
+  type InputProps,
+} from "./input.types";
 import { defaultCountries } from "./input.utils";
 import {
   InputRoot,
@@ -26,8 +33,8 @@ export const Input = React.forwardRef<
 >(
   (
     {
-      type = "text",
-      status = "default",
+      type = INPUT_TYPE.TEXT,
+      status = INPUT_STATUS.DEFAULT,
       label,
       required,
       hint,
@@ -39,8 +46,8 @@ export const Input = React.forwardRef<
       clearable = false,
       onClear,
       multiline = false,
-      symbolsLimit,
-      symbolsPlacement = "bottom-left",
+      charactersLimit,
+      charactersPlacement = CHARACTERS_PLACEMENT.BOTTOM_LEFT,
       countryCode,
       onCountryCodeChange,
       countryOptions = defaultCountries,
@@ -50,19 +57,30 @@ export const Input = React.forwardRef<
       onChange,
       disabled = false,
       placeholder,
+      showPassword: controlledShowPassword,
+      onShowPasswordChange,
       ...props
     },
     ref,
   ) => {
-    // Controlled vs Uncontrolled value state management
     const isControlled = valueProp !== undefined;
     const [localValue, setLocalValue] = React.useState("");
     const activeValue = isControlled ? valueProp : localValue;
 
-    // Password visibility state
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [localShowPassword, setLocalShowPassword] = React.useState(false);
+    const showPassword =
+      controlledShowPassword !== undefined
+        ? controlledShowPassword
+        : localShowPassword;
 
-    // Country dropdown state
+    const toggleShowPassword = () => {
+      const nextShow = !showPassword;
+      if (controlledShowPassword === undefined) {
+        setLocalShowPassword(nextShow);
+      }
+      onShowPasswordChange?.(nextShow);
+    };
+
     const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
     const [selectedCountryCode, setSelectedCountryCode] = React.useState(
       countryCode || countryOptions[0]?.code,
@@ -75,7 +93,6 @@ export const Input = React.forwardRef<
       }
     }, [countryCode]);
 
-    // Close country selector dropdown on click outside
     React.useEffect(() => {
       if (!isDropdownOpen) return;
       const handleClickOutside = (e: MouseEvent) => {
@@ -91,19 +108,17 @@ export const Input = React.forwardRef<
         document.removeEventListener("mousedown", handleClickOutside);
     }, [isDropdownOpen]);
 
-    // Determine target operational status
     let computedStatus = status;
     if (disabled) {
-      computedStatus = "disabled";
+      computedStatus = INPUT_STATUS.DISABLED;
     } else if (error) {
-      computedStatus = "error";
+      computedStatus = INPUT_STATUS.ERROR;
     } else if (success) {
-      computedStatus = "success";
+      computedStatus = INPUT_STATUS.SUCCESS;
     } else if (processing) {
-      computedStatus = "processing";
+      computedStatus = INPUT_STATUS.PROCESSING;
     }
 
-    // Helper text value resolution
     const helperText =
       typeof error === "string"
         ? error
@@ -113,7 +128,6 @@ export const Input = React.forwardRef<
             ? processing
             : hint;
 
-    // Handle clear action
     const handleClear = () => {
       if (!isControlled) {
         setLocalValue("");
@@ -128,19 +142,16 @@ export const Input = React.forwardRef<
       }
     };
 
-    // Select country callback
     const handleSelectCountry = (code: string) => {
       setSelectedCountryCode(code);
       onCountryCodeChange?.(code);
       setIsDropdownOpen(false);
     };
 
-    // Active country representation
     const activeCountry =
       countryOptions.find((c) => c.code === selectedCountryCode) ||
       countryOptions[0];
 
-    // Determine type for password field toggling
     const isPasswordType = type === "password";
     const resolvedInputType = isPasswordType
       ? showPassword
@@ -148,7 +159,6 @@ export const Input = React.forwardRef<
         : "password"
       : type;
 
-    // Show clear button logic
     const isClearButtonVisible =
       (clearable || type === "search" || type === "tel" || isPasswordType) &&
       activeValue.length > 0 &&
@@ -160,7 +170,6 @@ export const Input = React.forwardRef<
         disabled={disabled}
         value={activeValue}
         onChangeValue={(val) => {
-          // Sync state back to controller/local
           if (!isControlled) {
             setLocalValue(val);
           }
@@ -173,16 +182,13 @@ export const Input = React.forwardRef<
           }
         }}
         multiline={multiline}
-        symbolsLimit={symbolsLimit}
-        symbolsPlacement={symbolsPlacement}
+        charactersLimit={charactersLimit}
+        charactersPlacement={charactersPlacement}
         className={containerClassName}
       >
-        {/* Label */}
         {label && <InputLabel required={required}>{label}</InputLabel>}
 
-        {/* Input Field and Wrapper */}
         <InputWrapper className={wrapperClassName}>
-          {/* Tel variant: Country selector prefix */}
           {type === "tel" && (
             <div
               ref={dropdownRef}
@@ -193,55 +199,71 @@ export const Input = React.forwardRef<
                 disabled={disabled}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={cn(
-                  "flex items-center gap-1 text-sm font-medium text-[#FFF] hover:opacity-85 transition-opacity h-full focus:outline-none",
+                  "flex items-center gap-1.5 text-sm font-medium text-[#FFF] hover:opacity-85 transition-opacity h-full focus:outline-none",
                   disabled && "opacity-50 cursor-not-allowed",
                 )}
               >
-                <span>{activeCountry?.flag}</span>
-                <FiChevronDown className="w-3.5 h-3.5 text-[#808080]" />
+                {activeCountry?.code && activeCountry.code.length === 2 ? (
+                  <img
+                    src={`https://flagcdn.com/w20/${activeCountry.code.toLowerCase()}.png`}
+                    srcSet={`https://flagcdn.com/w40/${activeCountry.code.toLowerCase()}.png 2x`}
+                    width="20"
+                    alt={activeCountry.name}
+                    className="object-contain rounded-xs shrink-0"
+                  />
+                ) : (
+                  <span>{activeCountry?.flag}</span>
+                )}
+                <FiChevronDown className="w-3.5 h-3.5 text-[#808080] shrink-0" />
               </button>
 
-              {/* Country dropdown menu list */}
               {isDropdownOpen && (
-                <div className="absolute top-[calc(100%+8px)] left-[-8px] z-50 bg-[#1e1e1e] border border-[#333333] rounded-lg p-1 shadow-2xl min-w-[130px] flex flex-col gap-0.5">
+                <div className="absolute top-[calc(100%+8px)] left-[-8px] z-50 bg-[#1e1e1e] border border-[#333333] rounded-lg p-1 shadow-2xl min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-0.5 scrollbar-thin">
                   {countryOptions.map((c) => (
                     <button
                       key={c.code}
                       type="button"
                       onClick={() => handleSelectCountry(c.code)}
                       className={cn(
-                        "flex items-center gap-2 px-2.5 py-1.5 text-xs text-left text-[#FFF] hover:bg-[#282828] rounded-md transition-colors w-full focus:outline-none",
+                        "flex items-center gap-2.5 px-2.5 py-1.5 text-xs text-left text-[#FFF] hover:bg-[#282828] rounded-md transition-colors w-full focus:outline-none cursor-pointer",
                         selectedCountryCode === c.code &&
                           "bg-[#282828] font-semibold text-[#ABFFC3]",
                       )}
                     >
-                      <span className="text-sm">{c.flag}</span>
+                      {c.code && c.code.length === 2 ? (
+                        <img
+                          src={`https://flagcdn.com/w20/${c.code.toLowerCase()}.png`}
+                          srcSet={`https://flagcdn.com/w40/${c.code.toLowerCase()}.png 2x`}
+                          width="20"
+                          alt={c.name}
+                          className="object-contain rounded-xs shrink-0"
+                        />
+                      ) : (
+                        <span className="text-sm shrink-0">{c.flag}</span>
+                      )}
                       <span className="truncate">{c.name}</span>
-                      <span className="ml-auto text-[10px] text-[#808080]">
-                        {c.code}
+                      <span className="ml-auto text-[10px] text-[#808080] shrink-0">
+                        {c.dial_code || c.code}
                       </span>
                     </button>
                   ))}
                 </div>
               )}
 
-              {/* Selector Divider line */}
               <div className="w-[1px] h-4 bg-[#333333] mx-2" />
             </div>
           )}
 
-          {/* Regular left icon / search icon */}
           {type === "search" && !leftIcon && (
-            <InputAddon position="left">
+            <InputAddon position={ADDON_POSITION.LEFT}>
               <FiSearch className="w-4 h-4 text-[#808080]" />
             </InputAddon>
           )}
 
           {leftIcon && type !== "tel" && (
-            <InputAddon position="left">{leftIcon}</InputAddon>
+            <InputAddon position={ADDON_POSITION.LEFT}>{leftIcon}</InputAddon>
           )}
 
-          {/* Actual text field / area input */}
           <InputField
             ref={ref}
             type={resolvedInputType}
@@ -249,14 +271,12 @@ export const Input = React.forwardRef<
             {...props}
           />
 
-          {/* Right Icon slots (clear button, password toggle, status spinners/checkmarks/warnings) */}
           <div
             className={cn(
               "flex items-center gap-2 shrink-0 select-none",
               multiline ? "absolute top-3.5 right-3.5" : "ml-2.5",
             )}
           >
-            {/* Clear Button */}
             {isClearButtonVisible && (
               <button
                 type="button"
@@ -267,12 +287,11 @@ export const Input = React.forwardRef<
               </button>
             )}
 
-            {/* Password Visibility Toggle */}
             {isPasswordType && (
               <button
                 type="button"
                 disabled={disabled}
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={toggleShowPassword}
                 className={cn(
                   "text-[#808080] hover:text-[#FFF] transition-colors focus:outline-none p-0.5",
                   disabled && "opacity-50 cursor-not-allowed",
@@ -286,23 +305,27 @@ export const Input = React.forwardRef<
               </button>
             )}
 
-            {/* Custom Right icon */}
-            {rightIcon && !computedStatus.match(/success|error|processing/) && (
+            {rightIcon && (
               <div className="text-[#808080] flex items-center justify-center">
-                {rightIcon}
+                {computedStatus === INPUT_STATUS.PROCESSING ? (
+                  <FiLoader className="w-4 h-4 shrink-0 animate-spin text-[#ABFFC3]" />
+                ) : (
+                  computedStatus !== INPUT_STATUS.SUCCESS &&
+                  computedStatus !== INPUT_STATUS.ERROR &&
+                  rightIcon
+                )}
               </div>
             )}
 
-            {/* Success and Error state indicators (rendered inline inside the input box on the right if not multiline) */}
             {!multiline &&
-              computedStatus === "success" &&
+              computedStatus === INPUT_STATUS.SUCCESS &&
               (type === "search" || type === "tel" || rightIcon) && (
                 <div className="text-[#40A05B] flex items-center justify-center">
                   <FiCheckCircle className="w-4 h-4 shrink-0 text-[#ABFFC3]" />
                 </div>
               )}
             {!multiline &&
-              computedStatus === "error" &&
+              computedStatus === INPUT_STATUS.ERROR &&
               (type === "search" || type === "tel" || rightIcon) && (
                 <div className="text-[#FF5C5C] flex items-center justify-center">
                   <FiAlertTriangle className="w-4 h-4 shrink-0 text-[#FF5C5C]" />
@@ -311,7 +334,6 @@ export const Input = React.forwardRef<
           </div>
         </InputWrapper>
 
-        {/* Helper Text */}
         {helperText && <InputHelperText>{helperText}</InputHelperText>}
       </InputRoot>
     );

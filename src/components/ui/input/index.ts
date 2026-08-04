@@ -7,6 +7,7 @@ export {
   InputAddon,
   InputHelperText,
 } from "./InputPrimitives";
-export type { InputProps, InputStatus, CountryOption } from "./input.types";
+export { INPUT_STATUS, INPUT_TYPE, CHARACTERS_PLACEMENT, ADDON_POSITION } from "./input.types";
+export type { InputProps, InputStatus, InputType, CountryOption, CharactersPlacement, AddonPosition } from "./input.types";
 export * from "./input.utils";
 export * from "./input.variants";

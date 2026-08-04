@@ -1,5 +1,5 @@
 export const INITIAL_INTERACTIVE_VAL = "Your text";
-export const INITIAL_TEL_VAL = "+380 (67) 333 - 22 - 22";
+export const INITIAL_TEL_VAL = "+84 905 838 294";
 export const INITIAL_PW_VAL = "CaT789kdjf";
 export const INITIAL_MULTI_VAL =
   "This is a long string of text that will wrap eventually—good thing we have an input";

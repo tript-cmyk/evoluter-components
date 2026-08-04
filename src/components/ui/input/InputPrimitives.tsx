@@ -1,7 +1,14 @@
 import * as React from "react";
 import { FiLoader, FiCheckCircle, FiAlertTriangle } from "react-icons/fi";
 import { cn } from "../../../lib/cn";
-import type { InputStatus } from "./input.types";
+import {
+  INPUT_STATUS,
+  CHARACTERS_PLACEMENT,
+  ADDON_POSITION,
+  type InputStatus,
+  type AddonPosition,
+  type CharactersPlacement,
+} from "./input.types";
 
 interface InputContextValue {
   status: InputStatus;
@@ -11,8 +18,8 @@ interface InputContextValue {
   value: string;
   onChangeValue: (val: string) => void;
   multiline: boolean;
-  symbolsLimit?: number;
-  symbolsPlacement?: "bottom-left" | "top-right";
+  charactersLimit?: number;
+  charactersPlacement?: CharactersPlacement;
 }
 
 const InputContext = React.createContext<InputContextValue | undefined>(
@@ -36,29 +43,29 @@ export interface InputRootProps {
   value?: string;
   onChangeValue?: (val: string) => void;
   multiline?: boolean;
-  symbolsLimit?: number;
-  symbolsPlacement?: "bottom-left" | "top-right";
+  charactersLimit?: number;
+  charactersPlacement?: CharactersPlacement;
   className?: string;
 }
 
 export function InputRoot({
   children,
-  status = "default",
+  status = INPUT_STATUS.DEFAULT,
   disabled = false,
   value = "",
   onChangeValue = () => {},
   multiline = false,
-  symbolsLimit,
-  symbolsPlacement = "bottom-left",
+  charactersLimit,
+  charactersPlacement = CHARACTERS_PLACEMENT.BOTTOM_LEFT,
   className,
 }: InputRootProps) {
   const [focused, setFocused] = React.useState(false);
 
   let computedStatus: InputStatus = status;
   if (disabled) {
-    computedStatus = "disabled";
-  } else if (focused && status === "default") {
-    computedStatus = "active";
+    computedStatus = INPUT_STATUS.DISABLED;
+  } else if (focused && status === INPUT_STATUS.DEFAULT) {
+    computedStatus = INPUT_STATUS.ACTIVE;
   }
 
   const contextValue = React.useMemo(
@@ -70,8 +77,8 @@ export function InputRoot({
       value,
       onChangeValue,
       multiline,
-      symbolsLimit,
-      symbolsPlacement,
+      charactersLimit,
+      charactersPlacement,
     }),
     [
       computedStatus,
@@ -80,8 +87,8 @@ export function InputRoot({
       value,
       onChangeValue,
       multiline,
-      symbolsLimit,
-      symbolsPlacement,
+      charactersLimit,
+      charactersPlacement,
     ],
   );
 
@@ -106,10 +113,11 @@ export function InputLabel({
   className,
   ...props
 }: InputLabelProps) {
-  const { symbolsLimit, symbolsPlacement, value } = useInputContext();
+  const { charactersLimit, charactersPlacement, value } = useInputContext();
 
   const charCount = value.length;
-  const showTopCharCount = symbolsLimit && symbolsPlacement === "top-right";
+  const showTopCharCount =
+    charactersLimit && charactersPlacement === CHARACTERS_PLACEMENT.TOP_RIGHT;
 
   return (
     <div className="flex items-center justify-between w-full">
@@ -125,7 +133,7 @@ export function InputLabel({
       </label>
       {showTopCharCount && (
         <span className="text-[10px] font-medium text-[#575757] tracking-wider tab-nums">
-          {charCount} / {symbolsLimit}
+          {charCount} / {charactersLimit}
         </span>
       )}
     </div>
@@ -148,15 +156,16 @@ export function InputWrapper({
         multiline
           ? "items-start min-h-[120px] p-3 flex-col gap-2"
           : "items-center px-3.5 h-11",
-        // Status border color styling
-        status === "default" && "border-[#333333] hover:border-[#444444]",
-        status === "active" &&
+        status === INPUT_STATUS.DEFAULT &&
+          "border-[#333333] hover:border-[#444444] focus-within:border-[#ABFFC3] focus-within:shadow-[0_0_8px_rgba(171,255,195,0.15)]",
+        status === INPUT_STATUS.ACTIVE &&
           "border-[#ABFFC3] shadow-[0_0_8px_rgba(171,255,195,0.15)]",
-        status === "success" && "border-[#40A05B]",
-        status === "error" &&
-          "border-[#FF5C5C] shadow-[0_0_8px_rgba(255,92,92,0.08)]",
-        status === "processing" && "border-[#333333]",
-        status === "disabled" &&
+        status === INPUT_STATUS.SUCCESS && 
+          "border-[#40A05B] focus-within:border-[#40A05B]",
+        status === INPUT_STATUS.ERROR &&
+          "border-[#FF5C5C] shadow-[0_0_8px_rgba(255,92,92,0.08)] focus-within:border-[#FF5C5C]",
+        status === INPUT_STATUS.PROCESSING && "border-[#333333]",
+        status === INPUT_STATUS.DISABLED &&
           "border-[#2A2A2A] bg-[#1A1A1A] opacity-50 pointer-events-none cursor-not-allowed",
         className,
       )}
@@ -183,8 +192,8 @@ export const InputField = React.forwardRef<
     onChangeValue,
     setFocused,
     disabled,
-    symbolsLimit,
-    symbolsPlacement,
+    charactersLimit,
+    charactersPlacement,
   } = useInputContext();
 
   const handleFocus = (e: React.FocusEvent<any>) => {
@@ -201,8 +210,8 @@ export const InputField = React.forwardRef<
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     let val = e.target.value;
-    if (symbolsLimit !== undefined && val.length > symbolsLimit) {
-      val = val.substring(0, symbolsLimit);
+    if (charactersLimit !== undefined && val.length > charactersLimit) {
+      val = val.substring(0, charactersLimit);
     }
     onChangeValue(val);
   };
@@ -217,7 +226,8 @@ export const InputField = React.forwardRef<
 
   if (multiline) {
     const showBottomCharCount =
-      symbolsLimit && symbolsPlacement === "bottom-left";
+      charactersLimit &&
+      charactersPlacement === CHARACTERS_PLACEMENT.BOTTOM_LEFT;
     return (
       <div className="flex flex-col w-full h-full justify-between gap-2 relative">
         <textarea
@@ -235,7 +245,7 @@ export const InputField = React.forwardRef<
         />
         {showBottomCharCount && (
           <span className="text-[10px] font-medium text-[#575757] tracking-wider select-none tab-nums self-start">
-            {value.length} / {symbolsLimit}
+            {value.length} / {charactersLimit}
           </span>
         )}
       </div>
@@ -262,12 +272,12 @@ export const InputField = React.forwardRef<
 InputField.displayName = "InputField";
 
 export interface InputAddonProps extends React.HTMLAttributes<HTMLDivElement> {
-  position?: "left" | "right";
+  position?: AddonPosition;
 }
 
 export function InputAddon({
   children,
-  position = "left",
+  position = ADDON_POSITION.LEFT,
   className,
   ...props
 }: InputAddonProps) {
@@ -277,8 +287,10 @@ export function InputAddon({
     <div
       className={cn(
         "flex items-center justify-center text-[#808080] shrink-0 transition-colors select-none",
-        position === "left" ? "mr-2.5" : "ml-2.5",
-        multiline && position === "right" && "absolute top-3 right-3",
+        position === ADDON_POSITION.LEFT ? "mr-2.5" : "ml-2.5",
+        multiline &&
+          position === ADDON_POSITION.RIGHT &&
+          "absolute top-3 right-3",
         className,
       )}
       {...props}
@@ -297,24 +309,22 @@ export function InputHelperText({
 }: InputHelperTextProps) {
   const { status } = useInputContext();
 
-  // Pick color and icon based on current context status
   let textClass = "text-[#808080]";
   let icon: React.ReactNode = null;
 
-  if (status === "success") {
+  if (status === INPUT_STATUS.SUCCESS) {
     textClass = "text-[#ABFFC3]";
     icon = <FiCheckCircle className="w-3.5 h-3.5 shrink-0" />;
-  } else if (status === "error") {
+  } else if (status === INPUT_STATUS.ERROR) {
     textClass = "text-[#FF5C5C]";
     icon = <FiAlertTriangle className="w-3.5 h-3.5 shrink-0" />;
-  } else if (status === "processing") {
+  } else if (status === INPUT_STATUS.PROCESSING) {
     textClass = "text-[#808080]";
     icon = (
       <FiLoader className="w-3.5 h-3.5 shrink-0 animate-spin text-[#ABFFC3]" />
     );
   }
 
-  // If there's children, override/combine
   if (!children) return null;
 
   return (
