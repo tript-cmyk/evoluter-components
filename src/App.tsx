@@ -5,12 +5,12 @@ function App() {
   return (
     <div className="bg-[#141414] min-h-screen flex items-center justify-center">
       <Button
-        variant="textWhite"
-        size="xl"
-        // disabled
+        variant="primaryWhite"
+        size="small"
         processing
+        iconOnly
         icon={<GoPlus />}
-        iconPosition="left"
+        // iconPosition="left"
       >
         Button Text
       </Button>

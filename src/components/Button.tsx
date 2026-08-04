@@ -37,28 +37,26 @@ const buttonVariants = cva(
     "rounded-lg",
     "font-semibold",
     "transition-colors duration-300",
-    "disabled:pointer-events-none",
-    "disabled:opacity-50",
     "select-none",
     "cursor-pointer",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ABFFC3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]",
   ],
   {
     variants: {
       variant: {
-        primaryWhite:
-          "bg-[#FFF] text-[#141414] disabled:bg-[#808080] disabled:text-[#B3B3B3]",
+        primaryWhite: "bg-[#FFF] text-[#141414]",
 
         primaryDark:
-          "bg-black text-[#FFF] hover:text-[#141414] active:text-[#FFFFFF] disabled:bg-[#808080] disabled:text-[#B3B3B3]",
+          "bg-black text-[#FFF] hover:text-[#141414] active:text-[#FFFFFF]",
 
         secondaryDark:
-          "bg-[#3C3C3C] text-[#FFF]  hover:text-[#141414] active:text-[#FFFFFF] disabled:bg-[#808080] disabled:text-[#B3B3B3]",
+          "bg-[#3C3C3C] text-[#FFF] hover:text-[#141414] active:text-[#FFFFFF]",
 
         textDark:
-          "bg-transparent text-[#141414] hover:text-[#40A05B] active:text-[#262626] disabled:text-[#575757]",
+          "bg-transparent text-[#141414] hover:text-[#40A05B] active:text-[#262626]",
 
         textWhite:
-          "bg-transparent text-[#FFF] hover:text-[#40A05B] active:text-[#FFF] disabled:text-[#575757]",
+          "bg-transparent text-[#FFF] hover:text-[#40A05B] active:text-[#FFF]",
       },
 
       size: {
@@ -68,7 +66,12 @@ const buttonVariants = cva(
       },
 
       processing: {
-        true: "pointer-events-none",
+        true: "pointer-events-none opacity-80",
+        false: "",
+      },
+
+      disabled: {
+        true: "pointer-events-none opacity-50",
         false: "",
       },
 
@@ -82,6 +85,17 @@ const buttonVariants = cva(
       { size: "xl", iconOnly: true, className: "w-14" },
       { size: "large", iconOnly: true, className: "w-12" },
       { size: "small", iconOnly: true, className: "w-10" },
+
+      {
+        variant: ["primaryWhite", "primaryDark", "secondaryDark"],
+        disabled: true,
+        className: "bg-[#808080] text-[#B3B3B3]",
+      },
+      {
+        variant: ["textDark", "textWhite"],
+        disabled: true,
+        className: "text-[#575757]",
+      },
 
       {
         variant: "primaryWhite",
@@ -99,12 +113,7 @@ const buttonVariants = cva(
         className: "bg-[#575757] text-[#F2F2F2]",
       },
       {
-        variant: "textDark",
-        processing: true,
-        className: "text-[#808080]",
-      },
-      {
-        variant: "textWhite",
+        variant: ["textDark", "textWhite"],
         processing: true,
         className: "text-[#808080]",
       },
@@ -114,16 +123,19 @@ const buttonVariants = cva(
       variant: "primaryDark",
       size: "large",
       iconOnly: false,
+      disabled: false,
+      processing: false,
     },
   },
 );
 
 export interface ButtonProps
   extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "disabled">,
+    Omit<VariantProps<typeof buttonVariants>, "disabled" | "processing"> {
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
+  disabled?: boolean;
   processing?: boolean;
 }
 
@@ -136,20 +148,26 @@ export function Button({
   iconPosition = "left",
   iconOnly,
   processing = false,
-  disabled,
+  disabled = false,
   ...props
 }: ButtonProps) {
-  const displayIcon =
-    icon && (processing ? <FiLoader className="h-4 w-4 animate-spin" /> : icon);
+  const isDisabled = processing || disabled;
+
+  const displayIcon = processing ? (
+    <FiLoader className="h-4 w-4 animate-spin" />
+  ) : (
+    icon
+  );
 
   return (
     <button
-      disabled={disabled}
+      disabled={isDisabled}
       className={cn(
         buttonVariants({
           variant,
           size,
           processing,
+          disabled,
           iconOnly,
         }),
         className,
