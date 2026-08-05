@@ -4,12 +4,20 @@ export const INITIAL_PW_VAL = "CaT789kdjf";
 export const INITIAL_MULTI_VAL =
   "This is a long string of text that will wrap eventually—good thing we have an input";
 
-export type InputTab = "simple" | "multiline" | "special" | "password" | "long";
+export const INPUT = {
+  SIMPLE: "simple",
+  MULTI_LINE: "multiline",
+  SPECIAL: "special",
+  PASSWORD: "password",
+  LONG: "long",
+} as const;
+
+export type InputTab = (typeof INPUT)[keyof typeof INPUT];
 
 export const INPUT_TABS: { value: InputTab; label: string }[] = [
-  { value: "simple", label: "simple input" },
-  { value: "multiline", label: "multiline input" },
-  { value: "special", label: "Search & Phone" },
-  { value: "password", label: "password input" },
-  { value: "long", label: "long input" },
+  { value: INPUT.SIMPLE, label: "simple input" },
+  { value: INPUT.MULTI_LINE, label: "multiline input" },
+  { value: INPUT.SPECIAL, label: "Search & Phone" },
+  { value: INPUT.PASSWORD, label: "password input" },
+  { value: INPUT.LONG, label: "long input" },
 ];
