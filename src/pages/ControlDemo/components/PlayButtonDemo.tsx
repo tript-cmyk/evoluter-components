@@ -1,5 +1,21 @@
+import { PlayButton } from "../../../components/ui/controls/play-button";
+
 const PlayButtonDemo = () => {
-  return <div>PlayButtonDemo</div>;
+  return (
+    <div className="bg-white text-black px-4 py-6 rounded-md">
+      <div className="grid grid-cols-4 gap-6 items-center">
+        <div className="col-span-1 font-semibold">L</div>
+        <div className="col-span-1 font-semibold">M</div>
+        <div className="col-span-1 font-semibold">S</div>
+        <div className="col-span-1 font-semibold">XS</div>
+
+        <PlayButton size="l" />
+        <PlayButton size="m" />
+        <PlayButton size="s" />
+        <PlayButton size="xs" />
+      </div>
+    </div>
+  );
 };
 
 export default PlayButtonDemo;

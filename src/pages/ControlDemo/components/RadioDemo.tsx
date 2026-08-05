@@ -3,7 +3,7 @@ import { Radio } from "../../../components/ui/controls/radio";
 const RadioDemo = () => {
   return (
     <div className="space-y-8">
-      <div className="bg-[#181818] px-4 py-6 rounded-md">
+      <div className="bg-white text-black px-4 py-6 rounded-md">
         <div className="grid grid-cols-3 gap-6">
           <div className="col-span-1 font-semibold"></div>
           <div className="col-span-1 font-semibold">Not checked</div>
