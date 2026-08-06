@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ButtonDemoPage from "./pages/ButtonDemo/ButtonDemoPage";
 import InputDemoPage from "./pages/InputDemo/InputDemoPage";
 import ControlDemoPage from "./pages/ControlDemo/ControlDemoPage";
+import TabsControlDemo from "./pages/TabsDemo/TabsDemoPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/buttons" element={<ButtonDemoPage />} />
           <Route path="/inputs" element={<InputDemoPage />} />
           <Route path="/controls" element={<ControlDemoPage />} />
+          <Route path="/tabs" element={<TabsControlDemo />} />
           <Route path="*" element={<Navigate to="/buttons" replace />} />
         </Routes>
       </BrowserRouter>

@@ -1,127 +1,99 @@
 import { cva } from "class-variance-authority";
 
-export const fillVariants = cva(
-  [
-    "absolute inset-0",
-    "-z-0",
-    "[clip-path:circle(0%_at_50%_50%)]",
-    "transition-[clip-path]",
-    "duration-700",
-    "ease-out",
-    "group-hover:[clip-path:circle(150%_at_50%_50%)]",
-  ],
-  {
-    variants: {
-      variant: {
-        primaryWhite: "bg-[#ABFFC3] group-active:bg-[#FFFFFF]",
-
-        primaryDark: "bg-[#ABFFC3] group-active:bg-[#262626]",
-
-        secondaryDark: "bg-[#ABFFC3] group-active:bg-[#363636]",
-
-        textDark: "hidden",
-
-        textWhite: "hidden",
-      },
-    },
-  },
-);
-
 export const buttonVariants = cva(
-  [
-    "relative overflow-hidden group",
-    "inline-flex items-center justify-center gap-2",
-    "rounded-lg",
-    "font-semibold",
-    "transition-colors duration-300",
-    "select-none",
-    "cursor-pointer",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ABFFC3] focus-visible:ring-offset-2 focus-visible:ring-offset-[#141414]",
-  ],
+  "relative overflow-hidden group inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-300 cursor-pointer whitespace-nowrap",
   {
     variants: {
       variant: {
-        primaryWhite: "bg-[#FFF] text-[#141414]",
+        default:
+          "bg-[#FFFFFF] text-[#141414] hover:bg-[#ABFFC3] active:bg-[#FFFFFF]",
 
-        primaryDark:
-          "bg-black text-[#FFF] hover:text-[#141414] active:text-[#FFFFFF]",
+        outline:
+          "bg-[#141414] text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414] active:bg-[#262626]/15 active:text-[#FFFFFF]",
 
-        secondaryDark:
-          "bg-[#3C3C3C] text-[#FFF] hover:text-[#141414] active:text-[#FFFFFF]",
+        secondary:
+          "bg-[#363636]/20 text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414]/10 active:bg-[#363636]/20",
 
-        textDark:
-          "bg-transparent text-[#141414] hover:text-[#40A05B] active:text-[#262626]",
+        ghost: "bg-transparent text-[#FFFFFF] hover:text-[#40A05B]",
 
-        textWhite:
-          "bg-transparent text-[#FFF] hover:text-[#40A05B] active:text-[#FFF]",
+        dark: "bg-transparent text-[#141414]/10 hover:text-[#40A05B] active:text-[#262626]/15",
       },
 
       size: {
-        xl: "h-14 px-8 text-lg",
-        large: "h-12 px-6 text-base",
-        small: "h-10 px-4 text-sm",
+        sm: "px-5 py-2.5",
+        lg: "px-6 py-3",
+        xl: "px-8 py-4",
       },
 
       processing: {
-        true: "pointer-events-none opacity-80",
+        true: "pointer-events-none",
         false: "",
       },
 
       disabled: {
-        true: "pointer-events-none opacity-50",
-        false: "",
-      },
-
-      iconOnly: {
-        true: "aspect-square px-0",
+        true: "pointer-events-none",
         false: "",
       },
     },
 
     compoundVariants: [
-      { size: "xl", iconOnly: true, className: "w-14" },
-      { size: "large", iconOnly: true, className: "w-12" },
-      { size: "small", iconOnly: true, className: "w-10" },
-
       {
-        variant: ["primaryWhite", "primaryDark", "secondaryDark"],
+        variant: "default",
         disabled: true,
-        className: "bg-[#808080] text-[#B3B3B3]",
+        className: "bg-[#808080]/50 text-[#B3B3B3]/70",
       },
       {
-        variant: ["textDark", "textWhite"],
+        variant: "default",
+        processing: true,
+        className: "bg-[#E5E5E5]/90 text-[#808080]/50 ",
+      },
+      {
+        variant: "outline",
         disabled: true,
-        className: "text-[#575757]",
-      },
-
-      {
-        variant: "primaryWhite",
-        processing: true,
-        className: "bg-[#E5E5E5] text-[#808080]",
+        className: "bg-[#808080]/50 text-[#B3B3B3]/70",
       },
       {
-        variant: "primaryDark",
+        variant: "outline",
         processing: true,
-        className: "bg-[#363636] text-[#F2F2F2]",
+        className: "bg-[#363636]/20 text-[#F2F2F2]/95 ",
       },
       {
-        variant: "secondaryDark",
-        processing: true,
-        className: "bg-[#575757] text-[#F2F2F2]",
+        variant: "secondary",
+        disabled: true,
+        className: "bg-[#808080]/50 text-[#B3B3B3]/70",
       },
       {
-        variant: ["textDark", "textWhite"],
+        variant: "secondary",
         processing: true,
-        className: "text-[#808080]",
+        className: "bg-[#575757]/30 text-[#F2F2F2]/95 ",
+      },
+      {
+        variant: "ghost",
+        disabled: true,
+        className: "text-[#575757]/30",
+      },
+      {
+        variant: "ghost",
+        processing: true,
+        className: "text-[#808080]/50",
+      },
+      {
+        variant: "dark",
+        disabled: true,
+        className: "text-[#575757]/30",
+      },
+      {
+        variant: "dark",
+        processing: true,
+        className: "text-[#808080]/50 ",
       },
     ],
 
     defaultVariants: {
-      variant: "primaryDark",
-      size: "large",
-      iconOnly: false,
-      disabled: false,
+      variant: "default",
+      size: "sm",
       processing: false,
+      disabled: false,
     },
   },
 );

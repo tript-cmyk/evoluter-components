@@ -1,17 +1,28 @@
-import { Link } from "react-router-dom";
-import { groups } from "./demo.data";
-import { ButtonVariantGroup } from "./components/ButtonVariantGroup";
+import { FiPlus } from "react-icons/fi";
 import Header from "../../components/layout/Header";
+import {
+  Button,
+  BUTTON_SIZES,
+  BUTTON_VARIANTS,
+  ICON_POSITION,
+} from "../../components/ui/button";
 
 export default function ButtonDemoPage() {
   return (
     <div className="max-w-7xl mx-auto space-y-12 p-6 sm:p-12">
       <Header />
 
-      <div className="grid grid-cols-1 gap-8">
-        {groups.map((group, groupIdx) => (
-          <ButtonVariantGroup key={groupIdx} group={group} />
-        ))}
+      <div className="flex gap-2 items-center">
+        <Button
+          variant={BUTTON_VARIANTS.DEFAULT}
+          size={BUTTON_SIZES.SM}
+          icon={<FiPlus />}
+          // iconPosition={ICON_POSITION.RIGHT}
+          // processing
+          // disabled
+        >
+          Button
+        </Button>
       </div>
     </div>
   );

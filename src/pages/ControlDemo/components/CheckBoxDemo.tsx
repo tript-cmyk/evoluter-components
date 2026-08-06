@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CheckBox } from "../../../components/ui/controls/checkbox";
 
 const CheckBoxDemo = () => {
