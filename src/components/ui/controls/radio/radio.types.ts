@@ -1,17 +1,31 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
-export const LABEL_POSITION = {
-  LEFT: "left",
-  RIGHT: "right",
-} as const;
+export enum RADIO_ATTRIBUTES_EXCEPT {
+  TYPE = "type",
+  CHECKED = "checked",
+  ONCHANGE = "onChange",
+  NAME = "name",
+}
 
-export type LabelPosition =
-  (typeof LABEL_POSITION)[keyof typeof LABEL_POSITION];
+export interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  name?: string;
+  disabled?: boolean;
+}
 
-export interface RadioProps extends Omit<
+export interface RadioGroupItemProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "type" | "size"
+  RADIO_ATTRIBUTES_EXCEPT
 > {
+  value: string;
   label?: ReactNode;
-  labelPosition?: LabelPosition;
+}
+
+export interface RadioGroupContextValue {
+  value?: string;
+  name?: string;
+  disabled?: boolean;
+  onValueChange?: (value: string) => void;
 }

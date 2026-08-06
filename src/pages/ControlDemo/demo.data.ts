@@ -21,3 +21,15 @@ export const CHECKBOX_OPTIONS = [
   { value: "tennis", label: "Tennis" },
   { value: "others", label: "Others" },
 ];
+
+export enum GENDERS {
+  MALE = "male",
+  FEMALE = "female",
+  OTHERS = "others",
+}
+
+export const GENDER_OPTIONS: { label: string; value: string }[] = [
+  { label: "Nam", value: GENDERS.MALE },
+  { label: "Nữ", value: GENDERS.FEMALE },
+  { label: "Khác", value: GENDERS.OTHERS },
+];

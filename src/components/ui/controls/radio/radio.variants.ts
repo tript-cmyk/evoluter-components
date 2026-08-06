@@ -1,43 +1,41 @@
 import { cva } from "class-variance-authority";
 
-export const radioVariants = cva(
-  "inline-flex justify-center items-center w-4 h-4 rounded-full border-2",
+export const radioControlVariants = cva(
+  [
+    "inline-flex items-center justify-center w-4 h-4 rounded-full border-2 transition-all duration-150",
+  ],
   {
     variants: {
       checked: {
-        true: "",
-        false: "",
+        true: "bg-[#ABFFC3] border-[#141414] text-[#141414]",
+        false: "bg-white border-[#B3B3B3] text-transparent",
       },
 
       disabled: {
-        true: "cursor-not-allowed",
+        true: "cursor-not-allowed opacity-60",
         false: "cursor-pointer",
       },
     },
-    compoundVariants: [
-      {
-        checked: false,
-        disabled: false,
-        className: "bg-white border-[#B3B3B3]",
-      },
-      {
-        checked: true,
-        disabled: false,
-        className: "bg-[#ABFFC3] border-[#141414] text-black",
-      },
-      {
-        checked: false,
-        disabled: true,
-        className: "bg-[#F2F2F2] border-[#E5E5E5]",
-      },
-      {
-        checked: true,
-        disabled: true,
-        className: "bg-[#FFFFFF] border-[#B3B3B3] text-[#B3B3B3]",
-      },
-    ],
+
     defaultVariants: {
       checked: false,
+      disabled: false,
+    },
+  },
+);
+
+export const radioWrapperVariants = cva(
+  ["flex items-center justify-center w-8 h-8 rounded-full transition-colors"],
+  {
+    variants: {
+      disabled: {
+        true: "",
+        false:
+          "group-hover:bg-[#141414]/5 group-focus-within:bg-[#141414]/10 group-active:bg-[#141414]/15",
+      },
+    },
+
+    defaultVariants: {
       disabled: false,
     },
   },
