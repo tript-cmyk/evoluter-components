@@ -1,4 +1,7 @@
-import { PlayButton } from "../../../components/ui/controls/play-button";
+import {
+  PLAY_BUTTON_SIZE,
+  PlayButton,
+} from "../../../components/ui/controls/play-button";
 
 const PlayButtonDemo = () => {
   return (
@@ -9,10 +12,10 @@ const PlayButtonDemo = () => {
         <div className="col-span-1 font-semibold">S</div>
         <div className="col-span-1 font-semibold">XS</div>
 
-        <PlayButton size="l" />
-        <PlayButton size="m" />
-        <PlayButton size="s" />
-        <PlayButton size="xs" />
+        <PlayButton size={PLAY_BUTTON_SIZE.L} />
+        <PlayButton size={PLAY_BUTTON_SIZE.M} />
+        <PlayButton size={PLAY_BUTTON_SIZE.S} />
+        <PlayButton size={PLAY_BUTTON_SIZE.XS} />
       </div>
     </div>
   );
