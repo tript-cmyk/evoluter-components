@@ -4,7 +4,6 @@ import {
   Button,
   BUTTON_SIZES,
   BUTTON_VARIANTS,
-  ICON_POSITION,
 } from "../../components/ui/button";
 
 export default function ButtonDemoPage() {
@@ -12,7 +11,7 @@ export default function ButtonDemoPage() {
     <div className="max-w-7xl mx-auto space-y-12 p-6 sm:p-12">
       <Header />
 
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center justify-center">
         <Button
           variant={BUTTON_VARIANTS.DEFAULT}
           size={BUTTON_SIZES.SM}

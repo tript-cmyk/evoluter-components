@@ -1,24 +1,32 @@
 import * as React from "react";
 
-export const INPUT_STATUS = {
-  DEFAULT: "default",
-  ACTIVE: "active",
-  SUCCESS: "success",
-  ERROR: "error",
-  DISABLED: "disabled",
-  PROCESSING: "processing",
-} as const;
+export enum INPUT_STATUS {
+  DEFAULT = "default",
+  ACTIVE = "active",
+  SUCCESS = "success",
+  ERROR = "error",
+  DISABLED = "disabled",
+  PROCESSING = "processing",
+}
 
-export type InputStatus = (typeof INPUT_STATUS)[keyof typeof INPUT_STATUS];
+export enum INPUT_TYPE {
+  TEXT = "text",
+  PASSWORD = "password",
+  TEL = "tel",
+  SEARCH = "search",
+  NUMBER = "number",
+  TEXT_AREA = "textarea",
+}
 
-export const INPUT_TYPE = {
-  TEXT: "text",
-  PASSWORD: "password",
-  TEL: "tel",
-  SEARCH: "search",
-} as const;
+export enum CHARACTERS_PLACEMENT {
+  BOTTOM_LEFT = "bottom-left",
+  TOP_RIGHT = "top-right",
+}
 
-export type InputType = (typeof INPUT_TYPE)[keyof typeof INPUT_TYPE];
+export enum ADDON_POSITION {
+  LEFT = "left",
+  RIGHT = "right",
+}
 
 export interface CountryOption {
   name: string;
@@ -27,16 +35,8 @@ export interface CountryOption {
   dial_code: string;
 }
 
-export const CHARACTERS_PLACEMENT = {
-  BOTTOM_LEFT: "bottom-left",
-  TOP_RIGHT: "top-right",
-} as const;
-
-export type CharactersPlacement =
-  (typeof CHARACTERS_PLACEMENT)[keyof typeof CHARACTERS_PLACEMENT];
-
 export interface InputBaseProps {
-  status?: InputStatus;
+  status?: INPUT_STATUS;
   label?: string;
   required?: boolean;
   hint?: string;
@@ -49,37 +49,50 @@ export interface InputBaseProps {
   onClear?: () => void;
   multiline?: boolean;
   charactersLimit?: number;
-  charactersPlacement?: CharactersPlacement;
-  countryCode?: string;
-  onCountryCodeChange?: (code: string) => void;
-  countryOptions?: CountryOption[];
+  charactersPlacement?: CHARACTERS_PLACEMENT;
   containerClassName?: string;
   wrapperClassName?: string;
+}
+
+export interface InputTextProps
+  extends React.InputHTMLAttributes<HTMLInputElement>, InputBaseProps {
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface InputTextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement>, InputBaseProps {
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+export interface InputPasswordProps extends InputTextProps {
   showPassword?: boolean;
   onShowPasswordChange?: (show: boolean) => void;
 }
 
-export type InputProps = Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  "size" | "type" | "value" | "onChange"
-> &
-  Omit<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    "size" | "value" | "onChange"
-  > &
-  InputBaseProps & {
-    type?: InputType;
-    value?: string;
-    onChange?: (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => void;
-  };
-export type { InputRootProps } from "./InputPrimitives";
+export interface InputSearchProps extends InputTextProps {}
 
-export const ADDON_POSITION = {
-  LEFT: "left",
-  RIGHT: "right",
-} as const;
+export interface InputPhoneProps extends InputTextProps {
+  countryCode?: string;
+  onCountryCodeChange?: (code: string) => void;
+  countryOptions?: CountryOption[];
+}
 
-export type AddonPosition =
-  (typeof ADDON_POSITION)[keyof typeof ADDON_POSITION];
+export interface InputNumberProps extends InputTextProps {
+  stepControls?: boolean;
+}
+
+export type InputProps =
+  | ({ type: INPUT_TYPE.TEXT_AREA } & Omit<InputTextAreaProps, "type">)
+  | ({ type?: Exclude<INPUT_TYPE, INPUT_TYPE.TEXT_AREA> } & Omit<
+      InputTextProps,
+      "type"
+    > & {
+        countryCode?: string;
+        onCountryCodeChange?: (code: string) => void;
+        countryOptions?: CountryOption[];
+        showPassword?: boolean;
+        onShowPasswordChange?: (show: boolean) => void;
+        stepControls?: boolean;
+      });
