@@ -1,18 +1,44 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
 
-export const LABEL_POSITION = {
-  LEFT: "left",
-  RIGHT: "right",
-} as const;
+export enum LABEL_POSITION {
+  LEFT = "left",
+  RIGHT = "right",
+}
 
-export type LabelPosition =
-  (typeof LABEL_POSITION)[keyof typeof LABEL_POSITION];
+export enum DIRECTION {
+  HORIZONTAL = "horizontal",
+  VERTICAL = "vertical",
+}
 
 export interface CheckBoxProps extends Omit<
   InputHTMLAttributes<HTMLInputElement>,
   "type" | "size"
 > {
   label?: ReactNode;
-  labelPosition?: LabelPosition;
+  labelPosition?: LABEL_POSITION;
   indeterminate?: boolean;
+  containerClassName?: string;
+}
+
+export interface CheckBoxGroupOption {
+  label: ReactNode;
+  value: string;
+  disabled?: boolean;
+  indeterminate?: boolean;
+}
+
+export interface CheckBoxGroupProps extends HTMLAttributes<HTMLDivElement> {
+  value?: string[];
+  defaultValue?: string[];
+  onChangeValue?: (value: string[]) => void;
+
+  options?: CheckBoxGroupOption[];
+
+  direction?: DIRECTION;
+
+  label?: ReactNode;
+  disabled?: boolean;
+  name?: string;
+
+  children?: ReactNode;
 }

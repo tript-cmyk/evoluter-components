@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Header from "../../components/layout/Header";
-import { CONTROL_TABS, CONTROLS, type ControlTab } from "./demo.data";
+import { CONTROL_TABS, CONTROLS } from "./demo.data";
 import CheckBoxDemo from "./components/CheckBoxDemo";
 import RadioDemo from "./components/RadioDemo";
 import MultiSelectDemo from "./components/MultiSelectDemo";
 import PlayButtonDemo from "./components/PlayButtonDemo";
+import { cn } from "../../lib/cn";
 
 const ControlDemoPage = () => {
-  const [activeTab, setActiveTab] = useState<ControlTab>(CONTROLS.CHECKBOX);
+  const [activeTab, setActiveTab] = useState<CONTROLS>(CONTROLS.CHECKBOX);
 
   return (
     <div className="max-w-7xl mx-auto space-y-12 sm:p-12">
@@ -18,11 +19,12 @@ const ControlDemoPage = () => {
           <button
             key={tab.value}
             onClick={() => setActiveTab(tab.value)}
-            className={`px-4 py-2 text-xs font-semibold rounded-md transition-all capitalize select-none cursor-pointer ${
+            className={cn(
+              "px-4 py-2 text-xs font-semibold rounded-md transition-all capitalize select-none cursor-pointer",
               activeTab === tab.value
                 ? "bg-[#ABFFC3] text-[#121212] shadow"
-                : "text-[#808080] hover:text-[#FFF]"
-            }`}
+                : "text-[#808080] hover:text-white",
+            )}
           >
             {tab.label}
           </button>

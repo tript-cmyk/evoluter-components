@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const checkBoxVariants = cva(
-  "inline-flex justify-center items-center w-4 h-4 rounded-sm border-2",
+  "inline-flex justify-center items-center rounded-sm border-2 transition-all duration-150",
   {
     variants: {
       checked: {
@@ -25,7 +25,7 @@ export const checkBoxVariants = cva(
         checked: false,
         indeterminate: false,
         disabled: false,
-        className: "bg-white border-gray-300",
+        className: "bg-[#FFFFFF] border-[#E5E5E5]",
       },
 
       {
@@ -44,14 +44,14 @@ export const checkBoxVariants = cva(
         checked: false,
         indeterminate: false,
         disabled: true,
-        className: "bg-gray-100 border-gray-200",
+        className: "bg-[#F2F2F2] border-[#E5E5E5]",
       },
 
       {
         checked: true,
         disabled: true,
         className:
-          "bg-[#B3B3B3] border-[#B3B3B3] text-white pointer-events-none",
+          "bg-[#B3B3B3] border-[#B3B3B3] text-[#FFFFFF] pointer-events-none",
       },
 
       {
