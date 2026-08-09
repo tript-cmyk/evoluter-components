@@ -7,15 +7,11 @@ export const buttonVariants = cva(
       variant: {
         default:
           "bg-[#FFFFFF] text-[#141414] hover:bg-[#ABFFC3] active:bg-[#FFFFFF]",
-
         outline:
           "bg-[#141414] text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414] active:bg-[#262626]/15 active:text-[#FFFFFF]",
-
         secondary:
           "bg-[#363636]/20 text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414]/10 active:bg-[#363636]/20",
-
         ghost: "bg-transparent text-[#FFFFFF] hover:text-[#40A05B]",
-
         dark: "bg-transparent text-[#141414]/10 hover:text-[#40A05B] active:text-[#262626]/15",
       },
 

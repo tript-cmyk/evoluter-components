@@ -12,7 +12,7 @@ export const radioControlVariants = cva(
       },
 
       disabled: {
-        true: "cursor-not-allowed opacity-60",
+        true: "bg-transparent cursor-not-allowed opacity-60",
         false: "cursor-pointer",
       },
     },

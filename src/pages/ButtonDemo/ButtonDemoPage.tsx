@@ -4,6 +4,7 @@ import {
   Button,
   BUTTON_SIZES,
   BUTTON_VARIANTS,
+  // ICON_POSITION,
 } from "../../components/ui/button";
 
 export default function ButtonDemoPage() {
@@ -16,6 +17,7 @@ export default function ButtonDemoPage() {
           variant={BUTTON_VARIANTS.DEFAULT}
           size={BUTTON_SIZES.SM}
           icon={<FiPlus />}
+          // onClick={() => console.log("hello")}
           // iconPosition={ICON_POSITION.RIGHT}
           // processing
           // disabled
