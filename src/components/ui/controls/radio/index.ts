@@ -1,10 +1,4 @@
-export { default as RadioGroup } from "./RadioGroup";
-export { default as RadioGroupItem } from "./RadioGroupItem";
-export { RadioGroupContext, useRadioGroupContext } from "./radio-group.context";
-export {
-  RADIO_ATTRIBUTES_EXCEPT,
-  type RadioGroupProps,
-  type RadioGroupItemProps,
-  type RadioGroupContextValue,
-} from "./radio.types";
-export { radioControlVariants, radioWrapperVariants } from "./radio.variants";
+export { default as Radio } from "./Radio";
+export { RADIO_STATE } from "./radio.constants";
+export type { RadioOption, RadioProps } from "./radio.types";
+export { radioCircleVariants, radioHaloVariants } from "./radio.variants";

@@ -1,41 +1,65 @@
 import { cva } from "class-variance-authority";
 
-export const radioControlVariants = cva(
-  [
-    "inline-flex items-center justify-center w-4 h-4 rounded-full border-2 transition-all duration-150",
-  ],
+export const radioHaloVariants = cva(
+  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150",
   {
     variants: {
-      checked: {
-        true: "bg-[#ABFFC3] border-[#141414] text-[#141414]",
-        false: "bg-white border-[#B3B3B3] text-transparent",
+      interactionState: {
+        default: "",
+        hover: "bg-[#141414]/10",
+        focused: "bg-[#141414]/15",
+        clicked: "bg-[#141414]/25",
       },
-
       disabled: {
-        true: "bg-transparent cursor-not-allowed opacity-60",
-        false: "cursor-pointer",
+        true: "",
+        false:
+          "group-hover:bg-[#141414]/10 group-focus-within:bg-[#141414]/15 group-active:bg-[#141414]/25",
       },
     },
-
     defaultVariants: {
-      checked: false,
+      interactionState: "default",
       disabled: false,
     },
   },
 );
 
-export const radioWrapperVariants = cva(
-  ["flex items-center justify-center w-8 h-8 rounded-full transition-colors"],
+export const radioCircleVariants = cva(
+  "inline-flex h-5 w-5 items-center justify-center rounded-full border transition-all duration-150",
   {
     variants: {
-      disabled: {
+      checked: {
         true: "",
-        false:
-          "group-hover:bg-[#141414]/5 group-focus-within:bg-[#141414]/10 group-active:bg-[#141414]/15",
+        false: "",
+      },
+      disabled: {
+        true: "cursor-not-allowed",
+        false: "cursor-pointer",
       },
     },
-
+    compoundVariants: [
+      {
+        checked: false,
+        disabled: false,
+        className: "border-[#B3B3B3] bg-white",
+      },
+      {
+        checked: true,
+        disabled: false,
+        className: "border-[#ABFFC3] bg-[#ABFFC3] text-[#141414]",
+      },
+      {
+        checked: false,
+        disabled: true,
+        className: "border-[#E5E5E5] bg-[#F2F2F2]",
+      },
+      {
+        checked: true,
+        disabled: true,
+        className: "border-[#B3B3B3] bg-white text-[#B3B3B3]",
+      },
+    ],
     defaultVariants: {
+      checked: false,
       disabled: false,
     },
   },

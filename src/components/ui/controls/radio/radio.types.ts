@@ -1,31 +1,22 @@
-import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { RADIO_STATE } from "./radio.constants";
 
-export enum RADIO_ATTRIBUTES_EXCEPT {
-  TYPE = "type",
-  CHECKED = "checked",
-  ONCHANGE = "onChange",
-  NAME = "name",
+export interface RadioOption {
+  label: ReactNode;
+  value: string;
+  disabled?: boolean;
 }
 
-export interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
+export interface RadioProps {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  name?: string;
-  disabled?: boolean;
-}
-
-export interface RadioGroupItemProps extends Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  RADIO_ATTRIBUTES_EXCEPT
-> {
-  value: string;
+  options?: RadioOption[];
   label?: ReactNode;
-}
-
-export interface RadioGroupContextValue {
-  value?: string;
   name?: string;
   disabled?: boolean;
-  onValueChange?: (value: string) => void;
+  id?: string;
+  title?: string;
+  required?: boolean;
+  interactionState?: RADIO_STATE;
 }
