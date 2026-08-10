@@ -196,3 +196,19 @@ export interface InputIconGroupProps {
   children: React.ReactNode;
   position?: ADDON_POSITION;
 }
+
+export interface InputRootProps {
+  children: ReactNode;
+  status: INPUT_STATUS;
+  fieldDescriptionStatus: INPUT_STATUS;
+  disabled: boolean;
+  value: string;
+  onChangeValue: (value: string) => void;
+  multiline?: boolean;
+  maxLength?: number;
+  characterCounter?: boolean;
+  counterPlacement?: CHARACTERS_PLACEMENT;
+  message?: string;
+  onFocus?: () => void;
+  onBlur?: () => void;
+}

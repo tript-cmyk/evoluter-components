@@ -1,22 +1,7 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState } from "react";
 import { InputContext } from "../context/input.context";
 import { CHARACTERS_PLACEMENT, INPUT_STATUS } from "../input.constants";
-
-export interface InputRootProps {
-  children: ReactNode;
-  status: INPUT_STATUS;
-  fieldDescriptionStatus: INPUT_STATUS;
-  disabled: boolean;
-  value: string;
-  onChangeValue: (value: string) => void;
-  multiline?: boolean;
-  maxLength?: number;
-  characterCounter?: boolean;
-  counterPlacement?: CHARACTERS_PLACEMENT;
-  message?: string;
-  onFocus?: () => void;
-  onBlur?: () => void;
-}
+import type { InputRootProps } from "../input.types";
 
 export function InputRoot({
   children,
