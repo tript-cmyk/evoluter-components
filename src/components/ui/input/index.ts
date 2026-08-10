@@ -1,16 +1,4 @@
-export { Input } from "./Input";
-export {
-  InputRoot,
-  InputLabel,
-  InputWrapper,
-  InputField,
-  TextAreaField,
-  InputAddon,
-  InputAddonGroup,
-  FieldDescription,
-  InputHelperText,
-} from "./components/primitives";
-
+export { InputContext, useInputContext } from "./context/input.context";
 export {
   InputText,
   InputTextArea,
@@ -18,17 +6,30 @@ export {
   InputSearch,
   InputPhone,
   InputNumber,
-} from "./components/specialized";
+} from "./fields";
+
+export { useInputController, useInputValue } from "./hooks";
 
 export {
-  INPUT_STATUS,
-  INPUT_TYPE,
-  CHARACTERS_PLACEMENT,
-  ADDON_POSITION,
-} from "./input.types";
+  getFieldDescriptionIcon,
+  FieldDescription,
+  InputClearButton,
+  InputStatusIcon,
+  InputRightActions,
+  PasswordVisibilityButton,
+  InputControl,
+  InputBorder,
+  InputIconGroup,
+  InputLabel,
+  InputRoot,
+  NumberStepper,
+  PhoneCountrySelect,
+  TextareaControl,
+} from "./parts";
 
 export type {
   InputProps,
+  InputBaseProps,
   CountryOption,
   InputTextProps,
   InputTextAreaProps,
@@ -36,7 +37,30 @@ export type {
   InputSearchProps,
   InputPhoneProps,
   InputNumberProps,
+  FieldDescriptionOptions,
+  InputStateOptions,
+  InputIconGroupProps,
+  InputClearButtonProps,
+  InputContextValue,
+  InputControlProps,
+  InputFrameProps,
+  InputLabelProps,
+  InputRightActionsProps,
+  InputStatusIconProps,
+  NumberStepperProps,
+  PasswordVisibilityButtonProps,
+  PhoneCountrySelectProps,
+  TextareaControlProps,
+  UseInputValueOptions,
 } from "./input.types";
 
-export * from "./input.utils";
-export * from "./input.variants";
+export {
+  ADDON_POSITION,
+  CHARACTERS_PLACEMENT,
+  INPUT_NUMBER_DIRECTION,
+  INPUT_STATUS,
+  INPUT_TYPE,
+  defaultCountryOptions,
+} from "./input.constants";
+
+export { getFieldDescriptionMessage, getFieldDescriptionState, getFlagUrl, getInputState } from "./utils/input.utils";

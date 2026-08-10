@@ -1,6 +1,5 @@
 import {
   type InputProps,
-  INPUT_TYPE,
   type InputPasswordProps,
   type InputSearchProps,
   type InputPhoneProps,
@@ -15,7 +14,8 @@ import {
   InputSearch,
   InputPhone,
   InputNumber,
-} from "./components/specialized";
+} from "./fields";
+import { INPUT_TYPE } from "./input.constants";
 
 export function Input(props: InputProps) {
   const { type = INPUT_TYPE.TEXT } = props;
@@ -31,7 +31,7 @@ export function Input(props: InputProps) {
     case INPUT_TYPE.TEXT_AREA:
       return <InputTextArea {...(props as InputTextAreaProps)} />;
     default:
-      return <InputText type={type} {...(props as InputTextProps)} />;
+      return <InputText {...(props as InputTextProps)} />;
   }
 }
 

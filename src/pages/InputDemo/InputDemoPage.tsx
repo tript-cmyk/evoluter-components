@@ -1,10 +1,7 @@
 import { useState } from "react";
+import { FiLock, FiMail, FiStar } from "react-icons/fi";
 import Header from "../../components/layout/Header";
 import {
-  ADDON_POSITION,
-  CHARACTERS_PLACEMENT,
-  FieldDescription,
-  InputAddonGroup,
   InputNumber,
   InputPassword,
   InputPhone,
@@ -12,9 +9,10 @@ import {
   InputText,
   InputTextArea,
 } from "../../components/ui/input";
-import { FiLock, FiMail, FiStar } from "react-icons/fi";
+import { CHARACTERS_PLACEMENT } from "../../components/ui/input/input.constants";
 
 export default function InputDemoPage() {
+  const [value, setValue] = useState("");
   const [phoneVal, setPhoneVal] = useState("");
   const [numVal, setNumVal] = useState("10");
 
@@ -24,83 +22,77 @@ export default function InputDemoPage() {
 
       <div className="space-y-8 max-w-xl mx-auto text-left">
         <div className="space-y-6 bg-[#161616] p-8 rounded-xl border border-[#262626]">
-          {/* 1. InputText */}
-          <div>
-            <InputText
-              label="Email Address (InputText)"
-              placeholder="example@domain.com"
-              required
-              leftIcon={<FiMail />}
-            />
-          </div>
+          <InputText
+            value={value}
+            onValueChange={setValue}
+            // defaultValue="Hello world"
+            label="Email Address (InputText)"
+            placeholder="example@domain.com"
+            // required
+            clearable={true}
+            leftIcon={<FiMail />}
+            rightIcon={<FiLock />}
+            // showClearAction
+            // processing
+            // processingMessage="Validating email address"
+            // success
+            // successMessage="Email address is valid"
+            // error
+            // errorMessage="Not a valid email address"
+            // hint="We'll never share your email with anyone else."
+          />
 
-          {/* 2. InputTextArea */}
-          <div>
-            <InputTextArea
-              label="Biography (InputTextArea)"
-              placeholder="Tell us about yourself..."
-              charactersLimit={200}
-              charactersPlacement={CHARACTERS_PLACEMENT.TOP_RIGHT}
-            />
-          </div>
+          <InputTextArea
+            label="Biography (InputTextArea)"
+            placeholder="Tell us about yourself..."
+            // required
+            maxLength={200}
+            characterCounter
+            counterPlacement={CHARACTERS_PLACEMENT.TOP_RIGHT}
+            error
+            // errorMessage="Biography is too long."
+          />
 
-          {/* 3. InputPassword */}
-          <div>
-            <InputPassword
-              label="Security Password (InputPassword)"
-              placeholder="Enter password"
-              leftIcon={<FiLock />}
-            />
-          </div>
+          <InputPassword
+            label="Security Password (InputPassword)"
+            placeholder="Enter password"
+            leftIcon={<FiLock />}
 
-          {/* 4. InputSearch */}
-          <div>
-            <InputSearch
-              label="Quick Search (InputSearch)"
-              placeholder="Search documentation..."
-            />
-          </div>
+          />
 
-          {/* 5. InputPhone */}
-          <div>
-            <InputPhone
-              label="Mobile Number (InputPhone)"
-              placeholder="+84 000 000 000"
-              value={phoneVal}
-              onChange={(e) => setPhoneVal(e.target.value)}
-            />
-          </div>
+          <InputSearch
+            label="Quick Search (InputSearch)"
+            placeholder="Search documentation..." 
+            clearable
+            // processing
+            // processingMessage="Searching"
+          />
 
-          {/* 6. InputNumber */}
-          <div>
-            <InputNumber
-              label="Quantity (InputNumber)"
-              value={numVal}
-              onChange={(e) => setNumVal(e.target.value)}
-              min={0}
-              max={100}
-            />
-          </div>
+          <InputPhone
+            label="Mobile Number (InputPhone)"
+            placeholder="000 000 000"
+            value={phoneVal}
+            onValueChange={setPhoneVal}
+            clearable={false}
+          />
 
-          {/* 7. InputAddonGroup showing multiple icons/text */}
-          <div>
-            <InputText
-              label="Custom Multi-Addon Group"
-              placeholder="username"
-              leftIcon={<FiStar />}
-              wrapperClassName="pl-0"
-            >
-              <InputAddonGroup position={ADDON_POSITION.LEFT}>
-                <span className="text-xs text-[#808080] bg-[#2a2a2a] px-3 py-1.5 rounded-l-md border-r border-[#333333] select-none">
-                  https://
-                </span>
-              </InputAddonGroup>
-            </InputText>
-            <FieldDescription>
-              This input uses InputAddonGroup to render a static prefix label
-              side-by-side with an icon.
-            </FieldDescription>
-          </div>
+          <InputNumber
+            label="Quantity (InputNumber)"
+            value={numVal}
+            onValueChange={setNumVal}
+            min={0}
+            max={100}
+            success
+            successMessage="Quantity is valid"
+          />
+
+          <InputText
+            label="Favorite item"
+            placeholder="Starred value"
+            leftIcon={<FiStar />}
+            error
+            errorMessage="Please choose a favorite item."
+          />
         </div>
       </div>
     </div>
