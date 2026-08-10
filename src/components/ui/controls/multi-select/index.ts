@@ -1,4 +1,7 @@
 export { default as MultiSelect } from "./MultiSelect";
-export { LABEL_POSITION } from "./multi-select.types";
-export type { LabelPosition, MultiSelectProps } from "./multi-select.types";
-export { multiSelectVariants } from "./multi-select.variants";
+export { MULTI_SELECT_STATE } from "./multi-select.constants";
+export type { MultiSelectOption, MultiSelectProps } from "./multi-select.types";
+export {
+  multiSelectCircleVariants,
+  multiSelectHaloVariants,
+} from "./multi-select.variants";

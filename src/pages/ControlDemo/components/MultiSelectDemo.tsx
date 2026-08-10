@@ -1,40 +1,37 @@
 import { useState } from "react";
 import { MultiSelect } from "../../../components/ui/controls/multi-select";
 
+const GENRE_OPTIONS = [
+  { label: "Action", value: "action" },
+  { label: "Comedy", value: "comedy" },
+  { label: "Drama", value: "drama" },
+  { label: "Horror", value: "horror" },
+  { label: "Sci-fi", value: "sci-fi" },
+  { label: "Documentary", value: "documentary", disabled: true },
+];
+
 const MultiSelectDemo = () => {
-  const [checked, setChecked] = useState(false);
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
   return (
-    <div className="space-y-8">
-      <div className="bg-[#181818] px-4 py-6 rounded-md">
-        <div className="grid grid-cols-3 gap-6">
-          <div className="col-span-1 font-semibold"></div>
-          <div className="col-span-1 font-semibold">Not checked</div>
-          <div className="col-span-1 font-semibold">Checked</div>
+    <div className="mx-auto w-full max-w-xl rounded-lg bg-[#181818] p-6 text-left">
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold text-white">Genres</h2>
+        <p className="text-sm font-medium text-[#B3B3B3]">
+          Selected value:{" "}
+          <span className="text-[#ABFFC3]">
+            {selectedGenres.length ? selectedGenres.join(", ") : "empty"}
+          </span>
+        </p>
+      </div>
 
-          <div className="col-span-1 font-semibold">Default</div>
-          <MultiSelect
-            checked={checked}
-            onChange={() => setChecked(!checked)}
-          />
-          <MultiSelect checked />
-
-          <div className="col-span-1 font-semibold">Hover</div>
-          <MultiSelect />
-          <MultiSelect checked />
-
-          <div className="col-span-1 font-semibold">Focused</div>
-          <MultiSelect />
-          <MultiSelect checked />
-
-          <div className="col-span-1 font-semibold">Clicked</div>
-          <MultiSelect />
-          <MultiSelect checked />
-
-          <div className="col-span-1 font-semibold">Disabled</div>
-          <MultiSelect disabled />
-          <MultiSelect disabled checked />
-        </div>
+      <div className="mt-6">
+        <MultiSelect
+          name="genres"
+          value={selectedGenres}
+          onChangeValue={setSelectedGenres}
+          options={GENRE_OPTIONS}
+        />
       </div>
     </div>
   );

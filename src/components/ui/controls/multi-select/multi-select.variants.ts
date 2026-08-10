@@ -1,46 +1,63 @@
 import { cva } from "class-variance-authority";
 
-export const multiSelectVariants = cva(
-  "inline-flex justify-center items-center w-4 h-4 rounded-full border-2",
+export const multiSelectHaloVariants = cva(
+  "flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150",
+  {
+    variants: {
+      interactionState: {
+        default: "",
+        hover: "bg-[#ABFFC3]/10",
+        focused: "bg-[#ABFFC3]/15",
+        clicked: "bg-[#ABFFC3]/25",
+      },
+      disabled: {
+        true: "",
+        false:
+          "group-hover:bg-[#ABFFC3]/10 group-focus-within:bg-[#ABFFC3]/15 group-active:bg-[#ABFFC3]/25",
+      },
+    },
+    defaultVariants: {
+      interactionState: "default",
+      disabled: false,
+    },
+  },
+);
+
+export const multiSelectCircleVariants = cva(
+  "inline-flex h-4 w-4 items-center justify-center rounded-full border text-xs transition-all duration-150",
   {
     variants: {
       checked: {
         true: "",
         false: "",
       },
-
       disabled: {
         true: "cursor-not-allowed",
         false: "cursor-pointer",
       },
     },
-
     compoundVariants: [
       {
         checked: false,
         disabled: false,
-        className: "bg-white border-[#E5E5E5]",
+        className: "border-[#E5E5E5] bg-white",
       },
-
       {
         checked: true,
         disabled: false,
-        className: "bg-[#ABFFC3] border-[#E5E5E5s] text-black",
+        className: "border-[#ABFFC3] bg-[#ABFFC3] text-black",
       },
-
       {
         checked: false,
         disabled: true,
-        className: "bg-[#F2F2F2] border-[#E5E5E5]",
+        className: "border-[#E5E5E5] bg-[#F2F2F2]",
       },
-
       {
         checked: true,
         disabled: true,
-        className: "bg-[#B3B3B3] border-[#B3B3B3] text-white",
+        className: "border-[#B3B3B3] bg-[#B3B3B3] text-white",
       },
     ],
-
     defaultVariants: {
       checked: false,
       disabled: false,

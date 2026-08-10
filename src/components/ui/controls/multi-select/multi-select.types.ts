@@ -1,17 +1,22 @@
-import type { InputHTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
+import type { MULTI_SELECT_STATE } from "./multi-select.constants";
 
-export const LABEL_POSITION = {
-  LEFT: "left",
-  RIGHT: "right",
-} as const;
+export interface MultiSelectOption {
+  label: ReactNode;
+  value: string;
+  disabled?: boolean;
+}
 
-export type LabelPosition =
-  (typeof LABEL_POSITION)[keyof typeof LABEL_POSITION];
-
-export interface MultiSelectProps extends Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  "type" | "size"
-> {
+export interface MultiSelectProps {
+  value?: string[];
+  defaultValue?: string[];
+  onChangeValue?: (value: string[]) => void;
+  options?: MultiSelectOption[];
   label?: ReactNode;
-  labelPosition?: LabelPosition;
+  disabled?: boolean;
+  name?: string;
+  id?: string;
+  title?: string;
+  required?: boolean;
+  interactionState?: MULTI_SELECT_STATE;
 }
