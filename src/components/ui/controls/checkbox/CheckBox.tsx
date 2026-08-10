@@ -1,84 +1,96 @@
 import * as React from "react";
-import { forwardRef, useState, useEffect, useRef } from "react";
-import { LABEL_POSITION, type CheckBoxProps } from "./checkbox.types";
-import { cn } from "../../../../lib/cn";
+import { useEffect, useRef, useState } from "react";
 import { BsDashLg } from "react-icons/bs";
 import { IoCheckmarkOutline } from "react-icons/io5";
-import { checkBoxVariants } from "./checkbox.variants";
+import { cn } from "../../../../lib/cn";
+import { CHECKBOX_STATE } from "./checkbox.constants";
 import { useCheckBoxGroup } from "./checkbox.context";
+import type { CheckBoxProps } from "./checkbox.types";
+import {
+  checkBoxHaloVariants,
+  checkBoxVariants,
+} from "./checkbox.variants";
 
-const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) => {
+const resolveChecked = ({
+  checked,
+  checkedProp,
+  isControlled,
+  value,
+  groupValues,
+}: {
+  checked: boolean;
+  checkedProp?: boolean;
+  isControlled: boolean;
+  value?: string;
+  groupValues?: string[];
+}) => {
+  if (groupValues && value !== undefined) {
+    return groupValues.includes(value);
+  }
+
+  if (isControlled) {
+    return !!checkedProp;
+  }
+
+  return checked;
+};
+
+const CheckBox = (props: CheckBoxProps) => {
   const groupContext = useCheckBoxGroup();
 
   const {
     label,
-    labelPosition = LABEL_POSITION.RIGHT,
-    indeterminate,
+    interactionState = CHECKBOX_STATE.DEFAULT,
+    indeterminate = false,
     id,
     checked: checkedProp,
-    defaultChecked,
-    disabled: disabledProp,
-    className,
-    containerClassName,
+    defaultChecked = false,
+    disabled: disabledProp = false,
     onChange,
+    onFocus,
+    onBlur,
     value,
     name: nameProp,
-    ...inputProps
+    title,
+    required,
   } = props;
 
   const isControlled = checkedProp !== undefined;
   const isGrouped = !!groupContext;
-
-  const [localChecked, setLocalChecked] = useState<boolean>(
-    defaultChecked ?? false,
-  );
-
-  const checked =
-    isGrouped && value !== undefined
-      ? groupContext.values.includes(value as string)
-      : isControlled
-        ? !!checkedProp
-        : localChecked;
-
-  const disabled = groupContext?.disabled || disabledProp;
-  const name = groupContext?.name || nameProp;
-
+  const [localChecked, setLocalChecked] = useState(defaultChecked);
   const localRef = useRef<HTMLInputElement>(null);
+
+  const checked = resolveChecked({
+    checked: localChecked,
+    checkedProp,
+    isControlled,
+    value,
+    groupValues: groupContext?.values,
+  });
+
+  const disabled = !!groupContext?.disabled || disabledProp;
+  const name = groupContext?.name || nameProp;
 
   useEffect(() => {
     if (localRef.current) {
-      localRef.current.indeterminate = !!indeterminate;
+      localRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
 
-  const setRefs = (node: HTMLInputElement | null) => {
-    (localRef as any).current = node;
-    if (ref) {
-      if (typeof ref === "function") {
-        ref(node);
-      } else {
-        (ref as any).current = node;
-      }
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isControlled && !isGrouped) {
-      setLocalChecked(e.target.checked);
+      setLocalChecked(event.target.checked);
     }
-    onChange?.(e);
+
     if (isGrouped && value !== undefined) {
-      groupContext.toggle(value as string, e.target.checked);
+      groupContext.toggle(value, event.target.checked);
     }
+
+    onChange?.(event);
   };
 
   return (
-    <div
-      className={cn(
-        "inline-flex items-center",
-        containerClassName || className,
-      )}
-    >
+    <div className="inline-flex items-center">
       <label
         className={cn(
           "group inline-flex items-center gap-2 select-none",
@@ -87,49 +99,45 @@ const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) => {
       >
         <input
           id={id}
-          ref={setRefs}
+          ref={localRef}
           type="checkbox"
           className="sr-only"
           checked={checked}
           disabled={disabled}
           name={name}
           value={value}
+          title={title}
+          required={required}
+          aria-checked={indeterminate ? "mixed" : checked}
           onChange={handleChange}
-          {...inputProps}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
 
-        {labelPosition === LABEL_POSITION.LEFT && (
-          <span className="font-medium text-white select-none">{label}</span>
-        )}
-
-        <div
-          className={cn(
-            "flex items-center justify-center rounded-full transition-colors shrink-0",
-            !disabled &&
-              "group-hover:bg-[#ABFFC3]/7 group-focus-within:bg-[#ABFFC3]/15 group-active:bg-[#ABFFC3]/25 ",
-          )}
+        <span
+          className={checkBoxHaloVariants({
+            interactionState,
+            disabled,
+          })}
         >
-          <div
-            aria-hidden="true"
+          <span
             className={cn(
               checkBoxVariants({ checked, disabled, indeterminate }),
             )}
           >
             {checked && !indeterminate && (
-              <IoCheckmarkOutline className="w-full h-full p-[1px]" />
+              <IoCheckmarkOutline className="h-full w-full p-px" />
             )}
-            {indeterminate && <BsDashLg className="w-full h-full p-[1px]" />}
-          </div>
-        </div>
+            {indeterminate && <BsDashLg className="h-full w-full p-px" />}
+          </span>
+        </span>
 
-        {labelPosition === LABEL_POSITION.RIGHT && (
+        {label && (
           <span className="font-medium text-white select-none">{label}</span>
         )}
       </label>
     </div>
   );
-});
-
-CheckBox.displayName = "CheckBox";
+};
 
 export default CheckBox;

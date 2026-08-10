@@ -9,7 +9,7 @@ const CheckBox = CheckBoxOriginal as CheckBoxComponentType;
 CheckBox.Group = CheckBoxGroup;
 
 export { CheckBox, CheckBoxGroup };
-export { LABEL_POSITION, DIRECTION } from "./checkbox.types";
+export { CHECKBOX_STATE } from "./checkbox.constants";
 export type {
   CheckBoxProps,
   CheckBoxGroupProps,

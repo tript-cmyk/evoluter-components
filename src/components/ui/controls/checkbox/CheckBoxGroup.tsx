@@ -1,21 +1,19 @@
 import { useCallback, useMemo, useState } from "react";
-import { cn } from "../../../../lib/cn";
 import CheckBox from "./CheckBox";
 import { CheckBoxGroupContext } from "./checkbox.context";
-import { DIRECTION, type CheckBoxGroupProps } from "./checkbox.types";
+import type { CheckBoxGroupProps } from "./checkbox.types";
 
 export const CheckBoxGroup = ({
   value,
   defaultValue = [],
   onChangeValue,
   options,
-  direction = DIRECTION.HORIZONTAL,
-  className,
   label,
   disabled,
   name,
+  id,
+  title,
   children,
-  ...restProps
 }: CheckBoxGroupProps) => {
   const isControlled = value !== undefined;
 
@@ -26,7 +24,7 @@ export const CheckBoxGroup = ({
   const toggle = useCallback(
     (itemValue: string, checked: boolean) => {
       const nextValues = checked
-        ? [...values, itemValue]
+        ? Array.from(new Set([...values, itemValue]))
         : values.filter((v) => v !== itemValue);
 
       if (!isControlled) {
@@ -51,8 +49,9 @@ export const CheckBoxGroup = ({
   return (
     <CheckBoxGroupContext.Provider value={contextValue}>
       <div
-        className={cn("flex flex-col gap-2 w-full text-left", className)}
-        {...restProps}
+        id={id}
+        title={title}
+        className="flex w-full flex-col gap-2 text-left"
       >
         {label && (
           <span className="text-sm font-semibold text-white tracking-wide select-none">
@@ -61,12 +60,7 @@ export const CheckBoxGroup = ({
         )}
 
         <div
-          className={cn(
-            "flex flex-wrap gap-x-6 gap-y-3",
-            direction === "vertical"
-              ? "flex-col items-start"
-              : "flex-row items-center",
-          )}
+          className="flex flex-row flex-wrap items-center gap-x-6 gap-y-3"
         >
           {options?.map((option) => (
             <CheckBox

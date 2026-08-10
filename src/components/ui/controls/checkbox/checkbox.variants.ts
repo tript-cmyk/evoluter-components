@@ -1,7 +1,30 @@
 import { cva } from "class-variance-authority";
 
+export const checkBoxHaloVariants = cva(
+  "flex items-center justify-center rounded-full transition-colors duration-150 shrink-0 h-8 w-8",
+  {
+    variants: {
+      interactionState: {
+        default: "",
+        hover: "bg-[#ABFFC3]/10",
+        focused: "bg-[#ABFFC3]/15",
+        clicked: "bg-[#ABFFC3]/25",
+      },
+      disabled: {
+        true: "",
+        false:
+          "group-hover:bg-[#ABFFC3]/10 group-focus-within:bg-[#ABFFC3]/15 group-active:bg-[#ABFFC3]/25",
+      },
+    },
+    defaultVariants: {
+      interactionState: "default",
+      disabled: false
+    },
+  },
+);
+
 export const checkBoxVariants = cva(
-  "inline-flex justify-center items-center rounded-sm border-2 transition-all duration-150",
+  "inline-flex justify-center items-center rounded-sm border transition-all duration-150 h-4 w-4 text-xs",
   {
     variants: {
       checked: {

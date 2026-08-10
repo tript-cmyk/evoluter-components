@@ -1,23 +1,21 @@
-import type { HTMLAttributes, InputHTMLAttributes, ReactNode } from "react";
+import type { ChangeEventHandler, FocusEventHandler, ReactNode } from "react";
+import type { CHECKBOX_STATE } from "./checkbox.constants";
 
-export enum LABEL_POSITION {
-  LEFT = "left",
-  RIGHT = "right",
-}
-
-export enum DIRECTION {
-  HORIZONTAL = "horizontal",
-  VERTICAL = "vertical",
-}
-
-export interface CheckBoxProps extends Omit<
-  InputHTMLAttributes<HTMLInputElement>,
-  "type" | "size"
-> {
+export interface CheckBoxProps {
   label?: ReactNode;
-  labelPosition?: LABEL_POSITION;
+  interactionState?: CHECKBOX_STATE;
   indeterminate?: boolean;
-  containerClassName?: string;
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  value?: string;
+  name?: string;
+  id?: string;
+  title?: string;
+  required?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onFocus?: FocusEventHandler<HTMLInputElement>;
+  onBlur?: FocusEventHandler<HTMLInputElement>;
 }
 
 export interface CheckBoxGroupOption {
@@ -27,18 +25,22 @@ export interface CheckBoxGroupOption {
   indeterminate?: boolean;
 }
 
-export interface CheckBoxGroupProps extends HTMLAttributes<HTMLDivElement> {
+export interface CheckBoxGroupProps {
   value?: string[];
   defaultValue?: string[];
   onChangeValue?: (value: string[]) => void;
-
   options?: CheckBoxGroupOption[];
-
-  direction?: DIRECTION;
-
   label?: ReactNode;
   disabled?: boolean;
   name?: string;
-
+  id?: string;
+  title?: string;
   children?: ReactNode;
+}
+
+export interface CheckBoxGroupContextProps {
+  values: string[];
+  toggle: (value: string, checked: boolean) => void;
+  disabled?: boolean;
+  name?: string;
 }

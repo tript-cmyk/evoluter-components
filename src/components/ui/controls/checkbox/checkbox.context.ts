@@ -1,11 +1,5 @@
 import { createContext, useContext } from "react";
-
-interface CheckBoxGroupContextProps {
-  values: string[];
-  toggle: (value: string, checked: boolean) => void;
-  disabled?: boolean;
-  name?: string;
-}
+import type { CheckBoxGroupContextProps } from "./checkbox.types";
 
 export const CheckBoxGroupContext =
   createContext<CheckBoxGroupContextProps | null>(null);
