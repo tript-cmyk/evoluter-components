@@ -1,29 +1,10 @@
 import type { MouseEventHandler, ReactNode } from "react";
-
-export enum BUTTON_VARIANTS {
-  DEFAULT = "default",
-  OUTLINE = "outline",
-  SECONDARY = "secondary",
-  GHOST = "ghost",
-  DARK = "dark",
-}
-
-export enum BUTTON_SIZES {
-  SM = "sm",
-  LG = "lg",
-  XL = "xl",
-}
-
-export enum BUTTON_TYPE {
-  BUTTON = "button",
-  SUBMIT = "submit",
-  RESET = "reset",
-}
-
-export enum ICON_POSITION {
-  LEFT = "left",
-  RIGHT = "right",
-}
+import type {
+  BUTTON_SIZES,
+  BUTTON_TYPE,
+  BUTTON_VARIANTS,
+  ICON_POSITION,
+} from "./button.constants";
 
 export interface ButtonProps {
   variant?: BUTTON_VARIANTS;
