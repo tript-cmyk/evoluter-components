@@ -1,29 +1,66 @@
 import { cva } from "class-variance-authority";
 
-export const playButtonVariants = cva(
-  "inline-flex justify-center items-center rounded-full shadow-md bg-[#ABFFC399] cursor-pointer",
+export const playButtonHaloVariants = cva(
+  "inline-flex w-fit rounded-full p-px transition-colors duration-150 z-10",
   {
     variants: {
-      size: {
-        l: "w-25 h-25",
-        m: "w-20 h-20",
-        s: "w-14 h-14",
-        xs: "w-9 h-9",
+      state: {
+        default: "",
+        hover: "bg-linear-to-r from-[#FFB77A] to-[#ABFFC3]",
+        clicked: "bg-linear-to-r from-[#FBA153] to-[#79FF9F]",
+      },
+      disabled: {
+        true: "",
+        false:
+          "hover:bg-linear-to-r hover:from-[#FFB77A] hover:to-[#ABFFC3] active:bg-linear-to-r active:from-[#FBA153] active:to-[#79FF9F]",
       },
     },
     defaultVariants: {
-      size: "s",
+      state: "default",
+      disabled: false,
     },
   },
 );
 
-export const playButtonIconVariants = cva("text-black", {
+export const playButtonVariants = cva(
+  "inline-flex items-center justify-center rounded-full bg-[#ABFFC3]/60 text-black shadow-md transition-colors duration-150 z-10",
+  {
+    variants: {
+      size: {
+        l: "h-25 w-25",
+        m: "h-20 w-20",
+        s: "h-14 w-14",
+        xs: "h-9 w-9",
+      },
+      active: {
+        true: "bg-[#ABFFC3]",
+        false: "",
+      },
+      disabled: {
+        true: "cursor-not-allowed bg-[#B3B3B3]/60 text-[#575757]",
+        false: "cursor-pointer",
+      },
+      processing: {
+        true: "pointer-events-none bg-[#E5E5E5] text-[#808080]",
+        false: "",
+      },
+    },
+    defaultVariants: {
+      size: "s",
+      active: false,
+      disabled: false,
+      processing: false,
+    },
+  },
+);
+
+export const playButtonIconVariants = cva("text-current", {
   variants: {
     size: {
-      l: "w-7 h-7",
-      m: "w-5 h-5",
-      s: "w-4 h-4",
-      xs: "w-3 h-3",
+      l: "h-7 w-7",
+      m: "h-5 w-5",
+      s: "h-4 w-4",
+      xs: "h-3 w-3",
     },
   },
   defaultVariants: {
