@@ -16,7 +16,7 @@ const SlidersDemoPage = () => {
         <div className="mx-auto w-full max-w-3xl rounded-lg bg-black p-8 text-white">
           <h2 className="mb-2">Sliders</h2>
           <Slider
-            className="w-100"
+            // className="w-10"
             value={sound}
             onValueChange={(value) => setSound(value)}
             min={0}
