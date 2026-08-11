@@ -3,6 +3,7 @@ import ButtonDemoPage from "./pages/ButtonDemo/ButtonDemoPage";
 import InputDemoPage from "./pages/InputDemo/InputDemoPage";
 import ControlDemoPage from "./pages/ControlDemo/ControlDemoPage";
 import TabsControlDemo from "./pages/TabsDemo/TabsDemoPage";
+import SlidersDemoPage from "./pages/SliderDemo/SlidersDemoPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/inputs" element={<InputDemoPage />} />
           <Route path="/controls" element={<ControlDemoPage />} />
           <Route path="/tabs" element={<TabsControlDemo />} />
+          <Route path="/sliders" element={<SlidersDemoPage />} />
           <Route path="*" element={<Navigate to="/buttons" replace />} />
         </Routes>
       </BrowserRouter>
