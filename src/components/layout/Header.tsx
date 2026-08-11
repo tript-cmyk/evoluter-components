@@ -33,6 +33,12 @@ const Header = () => {
       >
         Sliders
       </Link>
+      <Link
+        to="/tags"
+        className="px-5 py-2.5 bg-[#ABFFC3] text-[#121212] rounded-xl font-bold text-xs hover:opacity-90 transition-opacity inline-block select-none cursor-pointer tracking-wider uppercase shadow-lg shadow-[#ABFFC3]/10"
+      >
+        Tags
+      </Link>
     </div>
   );
 };
