@@ -26,8 +26,8 @@ export function TextareaControl({
   } = useInputContext();
   const isInputDisabled = disabled || status === INPUT_STATUS.PROCESSING;
   const showBottomCounter =
-    characterCounter &&
-    maxLength &&
+    characterCounter !== undefined &&
+    maxLength != undefined &&
     counterPlacement === CHARACTERS_PLACEMENT.BOTTOM_LEFT;
 
   const handleFocus = () => {

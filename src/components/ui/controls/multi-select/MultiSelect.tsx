@@ -105,6 +105,4 @@ const MultiSelect = ({
   );
 };
 
-MultiSelect.displayName = "MultiSelect";
-
 export default MultiSelect;

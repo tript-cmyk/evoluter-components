@@ -10,7 +10,11 @@ import {
   InputRightActions,
   NumberStepper,
 } from "../parts";
-import { ADDON_POSITION, INPUT_NUMBER_DIRECTION, INPUT_TYPE } from "../input.constants";
+import {
+  ADDON_POSITION,
+  INPUT_NUMBER_DIRECTION,
+  INPUT_TYPE,
+} from "../input.constants";
 
 export function InputNumber(props: InputNumberProps) {
   const {
@@ -36,10 +40,12 @@ export function InputNumber(props: InputNumberProps) {
     const currentValue = Number.parseFloat(controller.value);
     const currentNumber = Number.isNaN(currentValue) ? 0 : currentValue;
     const nextRaw =
-      direction === INPUT_NUMBER_DIRECTION.UP ? currentNumber + step : currentNumber - step;
-    const nextWithMin = min ? Math.max(min, nextRaw) : nextRaw;
+      direction === INPUT_NUMBER_DIRECTION.UP
+        ? currentNumber + step
+        : currentNumber - step;
+    const nextWithMin = min !== undefined ? Math.max(min, nextRaw) : nextRaw;
     const nextValue =
-      max ? Math.min(max, nextWithMin) : nextWithMin;
+      max !== undefined ? Math.min(max, nextWithMin) : nextWithMin;
     controller.setValue(String(nextValue));
   };
 

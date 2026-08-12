@@ -8,6 +8,14 @@ export interface CountryOption {
   dial_code: string;
 }
 
+export interface InputPhoneValue {
+  value: string;
+  countryCode: string;
+  dialCode: string;
+  country?: CountryOption;
+  internationalValue: string;
+}
+
 export interface InputBaseProps {
   status?: INPUT_STATUS;
   label?: string;
@@ -67,6 +75,7 @@ export interface InputPhoneProps extends InputBaseProps {
   countryCode?: string;
   onCountryCodeChange?: (code: string) => void;
   countryOptions?: CountryOption[];
+  onPhoneValueChange?: (phone: InputPhoneValue) => void;
 }
 
 export interface InputNumberProps extends InputBaseProps {

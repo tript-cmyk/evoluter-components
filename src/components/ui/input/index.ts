@@ -35,6 +35,7 @@ export type {
   InputTextAreaProps,
   InputPasswordProps,
   InputSearchProps,
+  InputPhoneValue,
   InputPhoneProps,
   InputNumberProps,
   FieldDescriptionOptions,
@@ -52,6 +53,7 @@ export type {
   PhoneCountrySelectProps,
   TextareaControlProps,
   UseInputValueOptions,
+  InputRootProps,
 } from "./input.types";
 
 export {
@@ -61,6 +63,8 @@ export {
   INPUT_STATUS,
   INPUT_TYPE,
   defaultCountryOptions,
+  DEFAULT_PHONE_PATTERN,
+  REGEX_NUMBER_ONLY,
 } from "./input.constants";
 
-export { getFieldDescriptionMessage, getFieldDescriptionState, getFlagUrl, getInputState } from "./utils/input.utils";
+export { getFieldDescriptionMessage, getFlagUrl, getInputState } from "./utils/input.utils";

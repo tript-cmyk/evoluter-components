@@ -29,11 +29,10 @@ export default function InputDemoPage() {
             label="Email Address (InputText)"
             placeholder="example@domain.com"
             // required
-            clearable={true}
+            // clearable={false}
             leftIcon={<FiMail />}
             rightIcon={<FiLock />}
-            // showClearAction
-            // processing
+            processing
             // processingMessage="Validating email address"
             // success
             // successMessage="Email address is valid"
@@ -57,12 +56,11 @@ export default function InputDemoPage() {
             label="Security Password (InputPassword)"
             placeholder="Enter password"
             leftIcon={<FiLock />}
-
           />
 
           <InputSearch
             label="Quick Search (InputSearch)"
-            placeholder="Search documentation..." 
+            placeholder="Search documentation..."
             clearable
             // processing
             // processingMessage="Searching"
@@ -70,10 +68,10 @@ export default function InputDemoPage() {
 
           <InputPhone
             label="Mobile Number (InputPhone)"
-            placeholder="000 000 000"
             value={phoneVal}
             onValueChange={setPhoneVal}
             clearable={false}
+            hint={phoneVal}
           />
 
           <InputNumber

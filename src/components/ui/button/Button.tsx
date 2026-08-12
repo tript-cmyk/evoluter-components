@@ -3,8 +3,9 @@ import type { ButtonProps } from "./button.types";
 import { buttonVariants } from "./button.variants";
 import { BUTTON_TYPE, ICON_POSITION } from ".";
 
-const BUTTON_LOADER_CLASS = "h-4 w-4 animate-spin";
-const BUTTON_CONTENT_CLASS = "relative z-10 inline-flex items-center gap-2";
+const displayIcon = (processing: boolean, icon: React.ReactNode) => {
+  return processing ? <FiLoader className="h-4 w-4 animate-spin" /> : icon;
+};
 
 export function Button({
   children,
@@ -22,11 +23,6 @@ export function Button({
   title,
 }: ButtonProps) {
   const isDisabled = disabled || processing;
-  const displayIcon = processing ? (
-    <FiLoader className={BUTTON_LOADER_CLASS} />
-  ) : (
-    icon
-  );
 
   return (
     <button
@@ -44,12 +40,12 @@ export function Button({
         disabled,
       })}
     >
-      <span className={BUTTON_CONTENT_CLASS}>
-        {iconPosition === ICON_POSITION.LEFT && displayIcon}
+      <span className="relative z-10 inline-flex items-center gap-2">
+        {iconPosition === ICON_POSITION.LEFT && displayIcon(processing, icon)}
 
         {children && <span>{children}</span>}
 
-        {iconPosition === ICON_POSITION.RIGHT && displayIcon}
+        {iconPosition === ICON_POSITION.RIGHT && displayIcon(processing, icon)}
       </span>
     </button>
   );

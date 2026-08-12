@@ -52,9 +52,7 @@ export function InputRightActions({
   return (
     <>
       {showClear && <InputClearButton onClear={onClear} />}
-      {!isProcessing && !isSuccess && !isError && rightIcon && (
-        rightIcon
-      )}
+      {!isProcessing && !isSuccess && !isError && rightIcon && rightIcon}
       {rightIcon && isProcessing && (
         <FiLoader className="w-4 h-4 shrink-0 animate-spin text-[#ABFFC3]" />
       )}

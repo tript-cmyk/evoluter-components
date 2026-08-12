@@ -35,3 +35,7 @@ export enum INPUT_NUMBER_DIRECTION {
 }
 
 export const defaultCountryOptions: CountryOption[] = countryData as CountryOption[];
+
+export const REGEX_NUMBER_ONLY = /\D/g;
+
+export const DEFAULT_PHONE_PATTERN = "000 000 000"

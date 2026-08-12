@@ -1,4 +1,3 @@
-
 import { type InputPasswordProps } from "../input.types";
 import { useInputController } from "../hooks/useInputController";
 import {
@@ -32,7 +31,9 @@ export function InputPassword(props: InputPasswordProps) {
   const controller = useInputController(props);
   const [localShowPassword, setLocalShowPassword] =
     useState(defaultShowPassword);
-  const showPassword = controlledShowPassword ? controlledShowPassword : localShowPassword;
+  const showPassword = controlledShowPassword !== undefined
+    ? controlledShowPassword
+    : localShowPassword;
 
   const handleTogglePassword = () => {
     const nextShowPassword = !showPassword;
