@@ -6,6 +6,7 @@ import {
   type InputNumberProps,
   type InputTextAreaProps,
   type InputTextProps,
+  type InputEmailProps,
 } from "./input.types";
 import {
   InputText,
@@ -15,6 +16,7 @@ import {
   InputPhone,
   InputNumber,
 } from "./fields";
+import { InputEmail } from "./fields/InputEmail";
 import { INPUT_TYPE } from "./input.constants";
 
 export function Input(props: InputProps) {
@@ -30,6 +32,8 @@ export function Input(props: InputProps) {
       return <InputNumber {...(props as InputNumberProps)} />;
     case INPUT_TYPE.TEXT_AREA:
       return <InputTextArea {...(props as InputTextAreaProps)} />;
+    case INPUT_TYPE.EMAIL:
+      return <InputEmail {...(props as InputEmailProps)} />;
     default:
       return <InputText {...(props as InputTextProps)} />;
   }

@@ -50,6 +50,12 @@ export interface InputTextProps extends InputBaseProps {
   rightIcon?: ReactNode;
 }
 
+export interface InputEmailProps extends InputBaseProps {
+  type?: INPUT_TYPE.EMAIL;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+}
+
 export interface InputTextAreaProps extends InputBaseProps {
   type?: INPUT_TYPE.TEXT_AREA;
   rows?: number;
@@ -90,6 +96,7 @@ export interface InputNumberProps extends InputBaseProps {
 
 export type InputProps =
   | InputTextProps
+  | InputEmailProps
   | InputTextAreaProps
   | InputPasswordProps
   | InputSearchProps
