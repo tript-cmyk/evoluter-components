@@ -4,3 +4,8 @@ export enum RADIO_STATE {
   FOCUSED = "focused",
   CLICKED = "clicked",
 }
+
+export enum RADIO_DIRECTION {
+  HORIZONTAL = "horizontal",
+  VERTICAL = "vertical",
+}

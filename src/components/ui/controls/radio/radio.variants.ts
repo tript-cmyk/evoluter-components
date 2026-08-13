@@ -45,7 +45,7 @@ export const radioCircleVariants = cva(
       {
         checked: true,
         disabled: false,
-        className: "border-[#ABFFC3] bg-[#ABFFC3] text-[#141414]",
+        className: "border-[#141414] bg-[#ABFFC3] text-[#141414]",
       },
       {
         checked: false,
@@ -61,6 +61,21 @@ export const radioCircleVariants = cva(
     defaultVariants: {
       checked: false,
       disabled: false,
+    },
+  },
+);
+
+export const radioWrapperVariants = cva(
+  "flex flex-wrap gap-x-3 gap-y-1 text-xs md:gap-x-6 md:gap-y-3",
+  {
+    variants: {
+      direction: {
+        horizontal: "flex-row items-center",
+        vertical: "flex-col items-start",
+      },
+    },
+    defaultVariants: {
+      direction: "horizontal",
     },
   },
 );

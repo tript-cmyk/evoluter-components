@@ -94,7 +94,7 @@ const MultiSelect = ({
                 </span>
               </span>
 
-              <span className="font-medium text-white select-none">
+              <span>
                 {option.label}
               </span>
             </label>

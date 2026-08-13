@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { RADIO_STATE } from "./radio.constants";
+import type { RADIO_DIRECTION, RADIO_STATE } from "./radio.constants";
 
 export interface RadioOption {
   label: ReactNode;
@@ -12,7 +12,8 @@ export interface RadioProps {
   defaultValue?: string;
   onValueChange?: (value: string) => void;
   options?: RadioOption[];
-  label?: ReactNode;
+  className?: string;
+  direction?: RADIO_DIRECTION;
   name?: string;
   disabled?: boolean;
   id?: string;

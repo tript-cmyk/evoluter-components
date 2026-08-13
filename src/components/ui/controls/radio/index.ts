@@ -1,4 +1,4 @@
 export { default as Radio } from "./Radio";
-export { RADIO_STATE } from "./radio.constants";
+export { RADIO_STATE, RADIO_DIRECTION } from "./radio.constants";
 export type { RadioOption, RadioProps } from "./radio.types";
-export { radioCircleVariants, radioHaloVariants } from "./radio.variants";
+export { radioCircleVariants, radioHaloVariants, radioWrapperVariants } from "./radio.variants";

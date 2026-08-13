@@ -1,16 +1,21 @@
 import * as React from "react";
 import { useState } from "react";
 import { cn } from "../../../../lib/cn";
-import { RADIO_STATE } from "./radio.constants";
+import { RADIO_DIRECTION, RADIO_STATE } from "./radio.constants";
 import type { RadioProps } from "./radio.types";
-import { radioCircleVariants, radioHaloVariants } from "./radio.variants";
+import {
+  radioCircleVariants,
+  radioHaloVariants,
+  radioWrapperVariants,
+} from "./radio.variants";
 
 const Radio = ({
   value,
   defaultValue,
   onValueChange,
   options = [],
-  label,
+  className,
+  direction = RADIO_DIRECTION.HORIZONTAL,
   name,
   disabled = false,
   id,
@@ -41,15 +46,9 @@ const Radio = ({
     <div
       id={id}
       title={title}
-      className="flex w-full flex-col gap-2 text-left"
+      className={cn("flex w-full flex-col gap-2 text-left", className)}
     >
-      {label && (
-        <span className="text-sm font-semibold text-white tracking-wide select-none">
-          {label}
-        </span>
-      )}
-
-      <div className="flex flex-row flex-wrap items-center gap-x-6 gap-y-3">
+      <div className={radioWrapperVariants({ direction })}>
         {options.map((option) => {
           const optionDisabled = disabled || !!option.disabled;
           const checked = currentValue === option.value;
@@ -95,9 +94,7 @@ const Radio = ({
                 </span>
               </span>
 
-              <span className="font-medium text-white select-none">
-                {option.label}
-              </span>
+              <span className="min-w-0">{option.label}</span>
             </label>
           );
         })}
