@@ -8,7 +8,7 @@ import TagDemoPage from "./pages/TagDemo/TagDemoPage";
 
 function App() {
   return (
-    <div className="bg-black min-h-screen text-[#E0E0E0] font-sans antialiased">
+    <div className="bg-black min-h-screen min-w-screen text-[#E0E0E0] font-sans antialiased">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/buttons" replace />} />

@@ -4,7 +4,6 @@ import {
   SLIDER_DEFAULT_MAX,
   SLIDER_DEFAULT_MIN,
   SLIDER_DEFAULT_STEP,
-  SLIDER_VARIANT_SIZE,
 } from "./slider.constants";
 import type { SliderProps } from "./slider.types";
 import {
@@ -12,10 +11,8 @@ import {
   getInitialSliderValue,
   getSliderPercentage,
 } from "./slider.utils";
-import { sliderWidthVariants } from "./slider.variants";
 
 const Slider = ({
-  variant = SLIDER_VARIANT_SIZE.DESKTOP,
   value,
   defaultValue,
   min = SLIDER_DEFAULT_MIN,
@@ -56,7 +53,7 @@ const Slider = ({
   };
 
   return (
-    <div className={sliderWidthVariants({ variant })}>
+    <div className="relative min-w-0 py-2 w-70 md:w-120">
       <div className="relative h-7 w-full min-w-28 select-none">
         <div className="absolute left-0 right-0 top-1/2 h-0.5 -translate-y-1/2 bg-[#646464]" />
         <div

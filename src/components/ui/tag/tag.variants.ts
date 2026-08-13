@@ -1,13 +1,11 @@
 import { cva } from "class-variance-authority";
 
+export const iconTagBaseStyles = "inline-flex shrink-0 items-center justify-center text-current h-2.5 w-2.5 md:h-3 md:w-3";
+
 export const tagVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center border font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#00A344]/40 focus-visible:ring-offset-2 disabled:pointer-events-none",
+  "inline-flex w-fit shrink-0 items-center justify-center border font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#00A344]/40 focus-visible:ring-offset-2 disabled:pointer-events-none min-h-5 gap-1.5 px-2 py-1 text-[10px] md:min-h-7 md:gap-2 md:px-3 md:py-2 md:text-xs",
   {
     variants: {
-      size: {
-        desktop: "min-h-7 gap-2 px-3 py-2 text-xs",
-        mobile: "min-h-5 gap-1.5 px-2 py-1 text-[10px]",
-      },
       variant: {
         default: "rounded-md",
         colorGreen: "rounded-full",
@@ -87,7 +85,6 @@ export const tagVariants = cva(
       },
     ],
     defaultVariants: {
-      size: "desktop",
       variant: "default",
       selected: false,
       disabled: false,
@@ -99,7 +96,7 @@ export const tagVariants = cva(
 );
 
 export const tagIconVariants = cva(
-  "inline-flex shrink-0 items-center justify-center text-current",
+  iconTagBaseStyles,
   {
     variants: {
       error: {
@@ -110,13 +107,6 @@ export const tagIconVariants = cva(
         true: "text-green-500",
         false: "",
       },
-      size: {
-        desktop: "h-3 w-3",
-        mobile: "h-2.5 w-2.5",
-      },
-    },
-    defaultVariants: {
-      size: "desktop",
-    },
+    }
   },
 );

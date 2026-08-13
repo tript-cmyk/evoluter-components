@@ -1,7 +1,6 @@
 import type { MouseEvent, ReactNode } from "react";
 import type {
   TAG_SHOW_ICON_POSITION,
-  TAG_SIZE,
   TAG_VARIANT,
 } from "./tag.constants";
 
@@ -10,7 +9,6 @@ export interface TagProps {
   title?: string;
   label?: string;
   value?: string;
-  size?: TAG_SIZE;
   variant?: TAG_VARIANT;
   icon?: TAG_SHOW_ICON_POSITION;
   leftIcon?: ReactNode;

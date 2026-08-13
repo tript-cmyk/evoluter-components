@@ -1,8 +1,12 @@
 import { useState, type MouseEvent } from "react";
 import { FiPlus, FiX } from "react-icons/fi";
-import { TAG_SHOW_ICON_POSITION, TAG_SIZE, TAG_VARIANT } from "./tag.constants";
+import { TAG_SHOW_ICON_POSITION, TAG_VARIANT } from "./tag.constants";
 import type { TagProps } from "./tag.types";
-import { tagIconVariants, tagVariants } from "./tag.variants";
+import {
+  iconTagBaseStyles,
+  tagIconVariants,
+  tagVariants,
+} from "./tag.variants";
 import { showLeftIcon, showRightIcon } from "./tag.utils";
 
 const Tag = ({
@@ -10,7 +14,6 @@ const Tag = ({
   title,
   label,
   value,
-  size = TAG_SIZE.DESKTOP,
   variant = TAG_VARIANT.DEFAULT,
   icon = TAG_SHOW_ICON_POSITION.NONE,
   leftIcon = <FiPlus />,
@@ -66,7 +69,6 @@ const Tag = ({
       disabled={isDisabled}
       aria-pressed={currentSelected}
       className={tagVariants({
-        size,
         variant,
         selected: currentSelected,
         disabled,
@@ -77,15 +79,13 @@ const Tag = ({
       onClick={(event) => handleClick(value, event)}
     >
       {showLeftIcon(icon) && (
-        <span className={tagIconVariants({ size, error, success })}>
-          {leftIcon}
-        </span>
+        <span className={tagIconVariants({ error, success })}>{leftIcon}</span>
       )}
 
       {content && <span>{content}</span>}
 
       {showRightIcon(icon) && (
-        <span className={tagIconVariants({ size })} onClick={handleRemove}>
+        <span className={iconTagBaseStyles} onClick={handleRemove}>
           {rightIcon}
         </span>
       )}

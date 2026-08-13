@@ -1,8 +1,3 @@
-export enum TAG_SIZE {
-  DESKTOP = "desktop",
-  MOBILE = "mobile",
-}
-
 export enum TAG_VARIANT {
   DEFAULT = "default",
   COLOR_GREEN = "colorGreen",
