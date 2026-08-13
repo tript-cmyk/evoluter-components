@@ -24,7 +24,7 @@ const platforms = [
 
 const Footer = () => {
   return (
-    <div className="flex min-h-fit w-full flex-col gap-4 bg-[#141414] text-white">
+    <footer className="flex min-h-fit w-full flex-col gap-4 bg-[#141414] text-white">
       <div className="flex flex-col gap-6 px-6 py-6 sm:px-8 md:px-10">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="flex flex-col gap-8 sm:flex-row sm:flex-wrap md:gap-12 lg:gap-20">
@@ -63,7 +63,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 lg:min-w-80 lg:gap-10">
+          <div className="flex flex-col gap-8 lg:min-w-120 lg:gap-10">
             <div>
               <h3 className="mb-3">Newsletter</h3>
 
@@ -99,12 +99,12 @@ const Footer = () => {
 
       <div className="w-full shrink-0 overflow-hidden">
         <img
-          src="/images/logo.png"
+          src="/images/evoluter-logo.png"
           alt="logo"
           className="block h-auto w-full"
         />
       </div>
-    </div>
+    </footer>
   );
 };
 

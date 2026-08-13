@@ -8,11 +8,11 @@ export const buttonVariants = cva(
         default:
           "bg-[#FFFFFF] text-[#141414] hover:bg-[#ABFFC3] active:bg-[#FFFFFF]",
         outline:
-          "bg-[#141414] text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414] active:bg-[#262626]/15 active:text-[#FFFFFF]",
+          "bg-[#141414] text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414] active:bg-[#262626] active:text-[#FFFFFF]",
         secondary:
-          "bg-[#363636]/20 text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414]/10 active:bg-[#363636]/20",
+          "bg-[#363636] text-[#FFFFFF] hover:bg-[#ABFFC3] hover:text-[#141414] active:bg-[#363636]",
         ghost: "bg-transparent text-[#FFFFFF] hover:text-[#40A05B]",
-        dark: "bg-transparent text-[#141414]/10 hover:text-[#40A05B] active:text-[#262626]/15",
+        dark: "bg-transparent text-[#141414] hover:text-[#40A05B] active:text-[#262626]",
       },
 
       size: {
@@ -41,7 +41,7 @@ export const buttonVariants = cva(
       {
         variant: "default",
         processing: true,
-        className: "bg-[#E5E5E5]/90 text-[#808080]/50 ",
+        className: "bg-[#E5E5E5]/90 text-[#808080]/50",
       },
       {
         variant: "outline",
@@ -51,7 +51,7 @@ export const buttonVariants = cva(
       {
         variant: "outline",
         processing: true,
-        className: "bg-[#363636]/20 text-[#F2F2F2]/95 ",
+        className: "bg-[#363636]/20 text-[#F2F2F2]/95",
       },
       {
         variant: "secondary",
