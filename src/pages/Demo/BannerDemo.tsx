@@ -1,4 +1,4 @@
-import Banner from "../components/layout/Banner";
+import Banner from "../../components/layout/Banner";
 
 export const BannerDemo = () => {
   return (

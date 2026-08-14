@@ -1,8 +1,5 @@
 import { BsLightningCharge } from "react-icons/bs";
-import {
-  STATISTIC_CARD_TONE,
-  StatisticCard,
-} from "../components/layout/StatisticCard";
+import { STATISTIC_CARD_TONE, StatisticCard } from "../../components/layout/StatisticCard";
 
 const StatisticCardDemo = () => {
   return (

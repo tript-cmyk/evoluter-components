@@ -1,8 +1,5 @@
 import { useState } from "react";
-import PricingCard, {
-  defaultOptions,
-  PRICING_CARD_TONE,
-} from "../components/layout/PricingCard";
+import PricingCard, { defaultOptions, PRICING_CARD_TONE } from "../../components/layout/PricingCard";
 
 export const PricingPlanDemo = () => {
   const [selectedPlan, setSelectedPlan] = useState("");

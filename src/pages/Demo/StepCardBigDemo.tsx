@@ -1,4 +1,4 @@
-import StepCardBig from "../components/layout/StepCardBig";
+import StepCardBig from "../../components/layout/StepCardBig";
 
 const StepCardBigDemo = () => {
   return (

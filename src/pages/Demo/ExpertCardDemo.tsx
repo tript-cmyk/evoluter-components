@@ -1,5 +1,5 @@
 import { IoIosArrowRoundForward } from "react-icons/io";
-import ExpertCard, { EXPERT_TYPE } from "../components/layout/ExpertCard";
+import ExpertCard, { EXPERT_TYPE } from "../../components/layout/ExpertCard";
 
 const ExpertCardDemo = () => {
   const handleActionClick = () => {

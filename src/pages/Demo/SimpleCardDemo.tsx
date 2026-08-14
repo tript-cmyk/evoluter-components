@@ -1,4 +1,5 @@
-import SimpleCard from "../components/layout/SimpleCard";
+import SimpleCard from "../../components/layout/SimpleCard";
+
 
 const SimpleCardDemo = () => {
   return (

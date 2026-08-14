@@ -1,9 +1,5 @@
-import { BannerDemo } from "./BannerDemo";
-import ExpertCardDemo from "./ExpertCardDemo";
-import { PricingPlanDemo } from "./PricingPlanDemo";
-import SimpleCardDemo from "./SimpleCardDemo";
-import StatisticCardDemo from "./StatisticCardDemo";
-import StepCardBigDemo from "./StepCardBigDemo";
+import BenefitCard from "../components/layout/BenefitCard";
+import BenefitCardDemo from "./Demo/BenefitCardDemo";
 
 const Home = () => {
   return (
@@ -24,7 +20,9 @@ const Home = () => {
 
       {/* <StepCardBigDemo /> */}
 
-      <SimpleCardDemo />
+      {/* <SimpleCardDemo /> */}
+      
+      <BenefitCardDemo  />
     </div>
   );
 };
