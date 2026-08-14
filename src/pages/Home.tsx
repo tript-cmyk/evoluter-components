@@ -6,6 +6,7 @@ import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
 import ProjectCardDemo from "./Demo/ProjectCardDemo";
 import SimpleCaseStudyCardDemo from "./Demo/SimpleCaseStudyCardDemo";
 import TeamMemberDemo from "./Demo/TeamMemberDemo";
+import TestimonialCardDemo from "./Demo/TestimonialCardDemo";
 
 const Home = () => {
   return (
@@ -42,7 +43,9 @@ const Home = () => {
 
       {/* <ProjectCardDemo /> */}
 
-      <CaseStudyCardDemo />
+      {/* <CaseStudyCardDemo /> */}
+
+      <TestimonialCardDemo />
     </div>
   );
 };
