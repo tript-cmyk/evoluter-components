@@ -2,6 +2,7 @@ import { BannerDemo } from "./BannerDemo";
 import ExpertCardDemo from "./ExpertCardDemo";
 import { PricingPlanDemo } from "./PricingPlanDemo";
 import StatisticCardDemo from "./StatisticCardDemo";
+import StepCardBigDemo from "./StepCardBigDemo";
 
 const Home = () => {
   return (
@@ -18,7 +19,9 @@ const Home = () => {
 
       {/* <StatisticCardDemo /> */}
 
-      <ExpertCardDemo />
+      {/* <ExpertCardDemo /> */}
+
+      <StepCardBigDemo />
     </div>
   );
 };
