@@ -1,16 +1,16 @@
 import { cva } from "class-variance-authority";
 
-export const iconTagBaseStyles = "inline-flex shrink-0 items-center justify-center text-current h-2.5 w-2.5 md:h-3 md:w-3";
+export const iconTagBaseStyles = "inline-flex shrink-0 items-center justify-center text-current h-2.5 w-2.5 sm:h-3 sm:w-3";
 
 export const tagVariants = cva(
-  "inline-flex w-fit shrink-0 items-center justify-center border font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#00A344]/40 focus-visible:ring-offset-2 disabled:pointer-events-none min-h-5 gap-1.5 px-2 py-1 text-[10px] md:min-h-7 md:gap-2 md:px-3 md:py-2 md:text-xs",
+  "inline-flex w-fit shrink-0 items-center justify-center border font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-[#00A344]/40 focus-visible:ring-offset-2 disabled:pointer-events-none min-h-5 gap-1.5 px-2 py-1 text-[10px] sm:min-h-7 sm:gap-2 sm:px-3 sm:py-2 sm:text-xs",
   {
     variants: {
       variant: {
-        default: "rounded-md",
+        default: "rounded-sm",
         colorGreen: "rounded-full",
         colorOrange: "rounded-full",
-        glass: "rounded-full backdrop-blur-md",
+        glass: "rounded-full backdrop-blur-sm",
       },
       selected: {
         true: "",

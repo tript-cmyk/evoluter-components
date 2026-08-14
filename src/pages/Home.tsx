@@ -3,6 +3,7 @@ import BenefitCardDemo from "./Demo/BenefitCardDemo";
 import BenefitImageCardDemo from "./Demo/BenefitImageCardDemo";
 import BioCardDemo from "./Demo/BioCardDemo";
 import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
+import ProjectCardDemo from "./Demo/ProjectCardDemo";
 import ServiceCardDemo from "./Demo/ServiceCardDemo";
 import TeamMemberDemo from "./Demo/TeamMemberDemo";
 
@@ -37,7 +38,9 @@ const Home = () => {
 
       {/* <CaseStudyCardDemo /> */}
 
-      <BenefitImageCardDemo />
+      {/* <BenefitImageCardDemo /> */}
+
+      <ProjectCardDemo />
     </div>
   );
 };
