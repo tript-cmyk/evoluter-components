@@ -1,5 +1,6 @@
 import BenefitCard from "../components/layout/BenefitCard";
 import BenefitCardDemo from "./Demo/BenefitCardDemo";
+import TeamMemberDemo from "./Demo/TeamMemberDemo";
 
 const Home = () => {
   return (
@@ -21,8 +22,10 @@ const Home = () => {
       {/* <StepCardBigDemo /> */}
 
       {/* <SimpleCardDemo /> */}
-      
-      <BenefitCardDemo  />
+
+      {/* <BenefitCardDemo  /> */}
+
+      <TeamMemberDemo />
     </div>
   );
 };
