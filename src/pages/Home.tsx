@@ -4,7 +4,7 @@ import BenefitImageCardDemo from "./Demo/BenefitImageCardDemo";
 import BioCardDemo from "./Demo/BioCardDemo";
 import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
 import ProjectCardDemo from "./Demo/ProjectCardDemo";
-import ServiceCardDemo from "./Demo/ServiceCardDemo";
+import SimpleCaseStudyCardDemo from "./Demo/SimpleCaseStudyCardDemo";
 import TeamMemberDemo from "./Demo/TeamMemberDemo";
 
 const Home = () => {
@@ -36,11 +36,13 @@ const Home = () => {
 
       {/* <ServiceCardDemo /> */}
 
-      {/* <CaseStudyCardDemo /> */}
+      {/* <SimpleCaseStudyCardDemo /> */}
 
       {/* <BenefitImageCardDemo /> */}
 
-      <ProjectCardDemo />
+      {/* <ProjectCardDemo /> */}
+
+      <CaseStudyCardDemo />
     </div>
   );
 };

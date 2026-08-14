@@ -1,16 +1,16 @@
 import { cn } from "../../lib/cn";
 
-interface CaseStudyCardProps {
+interface SimpleCaseStudyCardProps {
   imageUrl: string;
   title: string;
   selected?: boolean;
 }
 
-const CaseStudyCard = ({
+const SimpleCaseStudyCard = ({
   imageUrl,
   title = "Developer",
   selected,
-}: CaseStudyCardProps) => {
+}: SimpleCaseStudyCardProps) => {
   return (
     <div
       className={cn(
@@ -38,4 +38,4 @@ const CaseStudyCard = ({
   );
 };
 
-export default CaseStudyCard;
+export default SimpleCaseStudyCard;
