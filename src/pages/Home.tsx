@@ -1,4 +1,5 @@
 import { BannerDemo } from "./BannerDemo";
+import ExpertCardDemo from "./ExpertCardDemo";
 import { PricingPlanDemo } from "./PricingPlanDemo";
 import StatisticCardDemo from "./StatisticCardDemo";
 
@@ -15,7 +16,9 @@ const Home = () => {
 
       {/* <PricingPlanDemo /> */}
 
-      <StatisticCardDemo />
+      {/* <StatisticCardDemo /> */}
+
+      <ExpertCardDemo />
     </div>
   );
 };

@@ -20,7 +20,7 @@ const Banner = ({
         <div>{description}</div>
       </div>
       <div>
-        <Button variant={BUTTON_VARIANTS.OUTLINE} onClick={onActionClick}>
+        <Button variant={BUTTON_VARIANTS.OUTLINE} onClick={() => onActionClick?.()}>
           {buttonText}
         </Button>
       </div>

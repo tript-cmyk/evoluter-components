@@ -60,7 +60,7 @@ export function PricingCard({
           icon={actionIcon}
           iconPosition={ICON_POSITION.RIGHT}
           disabled={disabled}
-          onClick={onActionClick}
+          onClick={() => onActionClick?.()}
         >
           {actionLabel}
         </Button>
