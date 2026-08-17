@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const statisticCardVariants = cva(
-  "flex flex-col items-start gap-2 md:gap-4 md:px-6 md:py-4 p-2 text-[#141414] w-90 rounded-2xl [clip-path:polygon(0_0,100%_0,100%_72%,85%_100%,0_100%)]",
+  "flex flex-col items-start gap-2 p-4 sm:gap-4 sm:px-6 sm:py-6 text-[#141414] w-75 sm:w-90 rounded-2xl [clip-path:polygon(0_0,100%_0,100%_72%,85%_100%,0_100%)]",
   {
     variants: {
       tone: {

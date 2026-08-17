@@ -8,6 +8,7 @@ import HeaderDemo from "./Demo/HeaderDemo";
 import { PricingPlanDemo } from "./Demo/PricingPlanDemo";
 import ProjectCardDemo from "./Demo/ProjectCardDemo";
 import SimpleCaseStudyCardDemo from "./Demo/SimpleCaseStudyCardDemo";
+import StatisticCardDemo from "./Demo/StatisticCardDemo";
 import StepCardDemo from "./Demo/StepCardDemo";
 import TeamMemberDemo from "./Demo/TeamMemberDemo";
 import TestimonialCardDemo from "./Demo/TestimonialCardDemo";
@@ -19,11 +20,11 @@ const Home = () => {
 
       {/* <HeaderDemo /> */}
 
-      <PricingPlanDemo />
+      {/* <PricingPlanDemo /> */}
+
+      <StatisticCardDemo />
 
       {/* <BannerDemo /> */}
-
-      {/* <StatisticCardDemo /> */}
 
       {/* <ExpertCardDemo /> */}
 
