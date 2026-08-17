@@ -4,6 +4,7 @@ import BenefitImageCardDemo from "./Demo/BenefitImageCardDemo";
 import BioCardDemo from "./Demo/BioCardDemo";
 import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
 import FooterDemo from "./Demo/FooterDemo";
+import HeaderDemo from "./Demo/HeaderDemo";
 import ProjectCardDemo from "./Demo/ProjectCardDemo";
 import SimpleCaseStudyCardDemo from "./Demo/SimpleCaseStudyCardDemo";
 import StepCardDemo from "./Demo/StepCardDemo";
@@ -13,10 +14,9 @@ import TestimonialCardDemo from "./Demo/TestimonialCardDemo";
 const Home = () => {
   return (
     <div className="flex flex-col items-center gap-10">
-      <FooterDemo />
+      {/* <FooterDemo /> */}
 
-      {/* <h2 className="font-bold text-2xl">Header</h2>
-      <Header /> */}
+      <HeaderDemo />
 
       {/* <BannerDemo /> */}
 

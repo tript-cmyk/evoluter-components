@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { Button, BUTTON_VARIANTS, ICON_POSITION } from "../ui/button";
 import { CiLogin } from "react-icons/ci";
 
-const menuItems = [
+const HEADER_NAV_ITEMS = [
   { label: "Services", href: "/" },
   { label: "Services", href: "/" },
   { label: "Services", href: "/" },
@@ -12,18 +12,18 @@ const menuItems = [
 
 const Header = () => {
   return (
-    <header className="bg-[#141414] text-white w-full min-h-fit px-2 py-2 flex items-center justify-between lg:px-8 z-100">
-      <div className="shrink-0 lg:hidden">
+    <header className="bg-[#141414] text-white w-full min-h-fit px-2 py-2 flex items-center justify-between lg:px-8 sticky top-0 z-100">
+      <NavLink to="/" className="shrink-0 lg:hidden">
         <img src="/images/mobile-header-logo.png" alt="Mobile Header Logo" />
-      </div>
+      </NavLink>
 
-      <div className="hidden lg:block">
+      <NavLink to="/" className="hidden lg:block">
         <img src="/images/desktop-header-logo.png" alt="Desktop Header Logo" />
-      </div>
+      </NavLink>
 
       <nav className="hidden lg:flex items-center gap-6 text-sm">
-        {menuItems.map((item) => (
-          <NavLink key={item.href} to={item.href}>
+        {HEADER_NAV_ITEMS.map((item, index) => (
+          <NavLink key={index} to={item.href}>
             {item.label}
           </NavLink>
         ))}
@@ -45,7 +45,9 @@ const Header = () => {
           </Button>
         </div>
         <div className="lg:hidden">
-          <img src="/images/burger-menu.png" alt="Burger Menu" />
+          <Button variant={BUTTON_VARIANTS.OUTLINE}>
+            <img src="/images/burger-menu.png" alt="Burger Menu" />
+          </Button>
         </div>
       </div>
     </header>
