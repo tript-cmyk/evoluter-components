@@ -27,15 +27,15 @@ const Home = () => {
 
       {/* <ExpertCardDemo /> */}
 
-      <StepCardDemo />
+      {/* <StepCardDemo /> */}
+
+      <TeamMemberDemo />
 
       {/* <BannerDemo /> */}
 
       {/* <SimpleCardDemo /> */}
 
       {/* <BenefitCardDemo  /> */}
-
-      {/* <TeamMemberDemo /> */}
 
       {/* <BioCardDemo /> */}
 
