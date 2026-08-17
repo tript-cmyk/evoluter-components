@@ -41,15 +41,15 @@ const Home = () => {
 
       {/* <BenefitCardDemo /> */}
 
-      <BenefitImageCardDemo />
+      {/* <BenefitImageCardDemo /> */}
+
+      <CaseStudyCardDemo />
 
       {/* <BannerDemo /> */}
 
       {/* <SimpleCaseStudyCardDemo /> */}
 
       {/* <ProjectCardDemo /> */}
-
-      {/* <CaseStudyCardDemo /> */}
 
       {/* <TestimonialCardDemo /> */}
     </div>
