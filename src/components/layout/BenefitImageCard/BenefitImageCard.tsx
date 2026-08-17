@@ -19,7 +19,9 @@ const BenefitImageCard = ({
       </div>
       <div className="flex flex-col items-center gap-1">
         <div className="font-bold text-[18px] sm:text-[22px]">{title}</div>
-        <div className="text-center text-[12px] sm:text-[14px]">{description}</div>
+        <div className="text-center text-[12px] sm:text-[14px]">
+          {description}
+        </div>
       </div>
     </div>
   );
