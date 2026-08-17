@@ -32,15 +32,15 @@ const Home = () => {
 
       {/* <TeamMemberDemo /> */}
 
-      <ServiceCardDemo />
+      {/* <ServiceCardDemo /> */}
+
+      <BioCardDemo />
 
       {/* <BannerDemo /> */}
 
       {/* <SimpleCardDemo /> */}
 
       {/* <BenefitCardDemo  /> */}
-
-      {/* <BioCardDemo /> */}
 
       {/* <SimpleCaseStudyCardDemo /> */}
 
