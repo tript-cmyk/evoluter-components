@@ -24,7 +24,7 @@ const Home = () => {
 
       {/* <HeaderDemo /> */}
 
-      {/* <PricingPlanDemo /> */}
+      <PricingPlanDemo />
 
       {/* <StatisticCardDemo /> */}
 
@@ -52,7 +52,7 @@ const Home = () => {
 
       {/* <BannerDemo /> */}
 
-      <TestimonialCardDemo />
+      {/* <TestimonialCardDemo /> */}
     </div>
   );
 };
