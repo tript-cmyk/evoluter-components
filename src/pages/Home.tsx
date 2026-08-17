@@ -5,6 +5,7 @@ import BioCardDemo from "./Demo/BioCardDemo";
 import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
 import ProjectCardDemo from "./Demo/ProjectCardDemo";
 import SimpleCaseStudyCardDemo from "./Demo/SimpleCaseStudyCardDemo";
+import StepCardDemo from "./Demo/StepCardDemo";
 import TeamMemberDemo from "./Demo/TeamMemberDemo";
 import TestimonialCardDemo from "./Demo/TestimonialCardDemo";
 
@@ -25,7 +26,7 @@ const Home = () => {
 
       {/* <ExpertCardDemo /> */}
 
-      {/* <StepCardBigDemo /> */}
+      <StepCardDemo />
 
       {/* <SimpleCardDemo /> */}
 
@@ -45,7 +46,7 @@ const Home = () => {
 
       {/* <CaseStudyCardDemo /> */}
 
-      <TestimonialCardDemo />
+      {/* <TestimonialCardDemo /> */}
     </div>
   );
 };
