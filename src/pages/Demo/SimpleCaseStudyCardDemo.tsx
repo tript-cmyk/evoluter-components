@@ -1,13 +1,16 @@
-import SimpleCaseStudyCard from "../../components/layout/SimpleCaseStudyCard"
-
+import SimpleCaseStudyCard from "../../components/layout/SimpleCaseStudyCard";
 
 const SimpleCaseStudyCardDemo = () => {
   return (
     <div>
-        <h2>Case Study Card</h2>
-        <SimpleCaseStudyCard imageUrl="/images/node_js.png" title="Developer" />
+      <h2>Simple Case Study Card</h2>
+      <SimpleCaseStudyCard
+        imageUrl="/images/node_js.png"
+        title="Developer"
+        selected={false}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default SimpleCaseStudyCardDemo
+export default SimpleCaseStudyCardDemo;

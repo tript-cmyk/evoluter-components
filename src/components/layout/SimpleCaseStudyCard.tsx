@@ -8,8 +8,8 @@ interface SimpleCaseStudyCardProps {
 
 const SimpleCaseStudyCard = ({
   imageUrl,
-  title = "Developer",
-  selected,
+  title = "",
+  selected = true,
 }: SimpleCaseStudyCardProps) => {
   return (
     <div
@@ -21,7 +21,7 @@ const SimpleCaseStudyCard = ({
     >
       <div
         className={cn(
-          "w-full flex flex-col items-center gap-2 bg-[#262626] text-white rounded-2xl p-2 sm:px-8 sm:py-6 hover:bg-[#363636] duration-300",
+          "w-full flex flex-col items-center gap-4 bg-[#262626] text-white rounded-2xl p-4  hover:bg-[#363636] duration-300 sm:p-8",
           selected && "bg-[#0D0D0D]",
         )}
       >

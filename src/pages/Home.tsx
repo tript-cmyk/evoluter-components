@@ -43,11 +43,11 @@ const Home = () => {
 
       {/* <BenefitImageCardDemo /> */}
 
-      <CaseStudyCardDemo />
+      {/* <CaseStudyCardDemo /> */}
+
+      <SimpleCaseStudyCardDemo />
 
       {/* <BannerDemo /> */}
-
-      {/* <SimpleCaseStudyCardDemo /> */}
 
       {/* <ProjectCardDemo /> */}
 
