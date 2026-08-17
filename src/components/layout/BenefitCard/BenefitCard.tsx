@@ -9,9 +9,9 @@ const BenefitCard = ({ tone, icon, title, description }: BenefitCardProps) => {
     <div className={benefitCardVariants({ tone })}>
       <div className="flex items-center gap-4">
         <div className={iconBenefitCardVariants({ tone })}>{icon}</div>
-        <div className="font-bold text-[18px] md:text-[24px]">{title}</div>
+        <div className="font-bold text-[18px] sm:text-[20px]">{title}</div>
       </div>
-      <div className="text-gray-800 text-[16px]">{description}</div>
+      <div className="text-gray-800 text-[14px]">{description}</div>
     </div>
   );
 };
