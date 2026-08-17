@@ -3,7 +3,7 @@ import type { EXPERT_TYPE } from "./expert-card.constants";
 
 export interface ExpertCardProps {
   expertType?: EXPERT_TYPE;
-  avatar?: ReactNode;
+  avatarUrl?: string;
   title?: string;
   description?: string;
   iconAction?: ReactNode;

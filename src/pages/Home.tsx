@@ -3,6 +3,7 @@ import BenefitCardDemo from "./Demo/BenefitCardDemo";
 import BenefitImageCardDemo from "./Demo/BenefitImageCardDemo";
 import BioCardDemo from "./Demo/BioCardDemo";
 import CaseStudyCardDemo from "./Demo/CaseStudyCardDemo";
+import ExpertCardDemo from "./Demo/ExpertCardDemo";
 import FooterDemo from "./Demo/FooterDemo";
 import HeaderDemo from "./Demo/HeaderDemo";
 import { PricingPlanDemo } from "./Demo/PricingPlanDemo";
@@ -22,11 +23,11 @@ const Home = () => {
 
       {/* <PricingPlanDemo /> */}
 
-      <StatisticCardDemo />
+      {/* <StatisticCardDemo /> */}
+
+      <ExpertCardDemo />
 
       {/* <BannerDemo /> */}
-
-      {/* <ExpertCardDemo /> */}
 
       {/* <StepCardDemo /> */}
 

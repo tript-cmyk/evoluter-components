@@ -14,6 +14,19 @@ export const getToneWithExpertType = (expertType: EXPERT_TYPE): EXPERT_TONE => {
   }
 };
 
+export const getDefaultAvatarWithExpertType = (expertType: EXPERT_TYPE) => {
+  switch (expertType) {
+    case EXPERT_TYPE.DEVELOPER:
+      return "/images/indian-man.png";
+    case EXPERT_TYPE.DESIGNER:
+      return "/images/man-in-hat.png";
+    case EXPERT_TYPE.MANAGER:
+      return "/images/woman-with-phone.png";
+    default:
+      return "/images/indian-man.png";
+  }
+};
+
 export const getButtonVariant = (tone: EXPERT_TONE) => {
   return tone === EXPERT_TONE.BLACK
     ? BUTTON_VARIANTS.GHOST

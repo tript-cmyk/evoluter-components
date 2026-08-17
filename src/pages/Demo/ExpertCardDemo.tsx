@@ -11,7 +11,7 @@ const ExpertCardDemo = () => {
       <h2>Expert Card</h2>
       <div className="flex flex-wrap gap-4">
         <ExpertCard
-          expertType={EXPERT_TYPE.MANAGER}
+          expertType={EXPERT_TYPE.DEVELOPER}
           title="Hire Developers"
           description="At the push of a button, our platform enables you to hire an outsourced tech, product or"
           iconAction={<IoIosArrowRoundForward size={30} />}
