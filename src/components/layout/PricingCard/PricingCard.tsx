@@ -15,7 +15,7 @@ import {
 import { getButtonVariant } from "./pricing-card.utils";
 import { RADIO_DIRECTION } from "../../ui/controls/radio/radio.constants";
 
-export function PricingCard({
+const PricingCard = ({
   tone = PRICING_CARD_TONE.MINT,
   title = "Starting Out",
   price = "$0-$20K",
@@ -30,18 +30,18 @@ export function PricingCard({
   disabled = false,
   className,
   name,
-}: PricingCardProps) {
+}: PricingCardProps) => {
   return (
     <article className={cn(pricingCardVariants({ tone, disabled }), className)}>
       <div className="flex flex-col gap-4">
-        <h3 className="text-base font-bold">{title}</h3>
+        <h3 className="text-[20px] sm:text-[24px] font-bold">{title}</h3>
         <div className={pricingCardDividerVariants({ tone })} />
-        <p className="text-xl md:text-2xl  font-bold tracking-normal">
+        <div className="text-[24px] sm:text-[28px]  font-bold tracking-normal">
           {price}
-        </p>
+        </div>
       </div>
 
-      <p className="mt-4 text-xs font-semibold">{description}</p>
+      <p className="mt-4 text-[12px] font-semibold">{description}</p>
 
       <Radio
         className="mt-3"
@@ -54,7 +54,7 @@ export function PricingCard({
         onValueChange={onChangeValue}
       />
 
-      <div className="mt-6">
+      <div className="mt-2 sm:mt-6">
         <Button
           variant={getButtonVariant(tone)}
           icon={actionIcon}
@@ -67,6 +67,6 @@ export function PricingCard({
       </div>
     </article>
   );
-}
+};
 
 export default PricingCard;

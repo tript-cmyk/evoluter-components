@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const pricingCardVariants = cva(
-  "flex w-full min-w-0 flex-col rounded-lg border p-2 md:px-6 md:py-4 text-left transition-colors duration-200 max-w-70",
+  "flex w-full min-w-0 flex-col rounded-lg border p-2 text-left transition-colors duration-200 max-w-55 sm:px-6 sm:py-4 sm:max-w-70",
   {
     variants: {
       tone: {

@@ -66,7 +66,7 @@ export const radioCircleVariants = cva(
 );
 
 export const radioWrapperVariants = cva(
-  "flex flex-wrap gap-x-3 gap-y-1 text-xs md:gap-x-6 md:gap-y-3",
+  "flex flex-wrap gap-x-3 gap-y-1 text-xs sm:gap-x-4",
   {
     variants: {
       direction: {
