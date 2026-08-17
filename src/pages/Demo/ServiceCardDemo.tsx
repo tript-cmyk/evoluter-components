@@ -5,6 +5,7 @@ const ServiceCardDemo = () => {
     <div>
       <h2>Service Card</h2>
       <ServiceCard
+        icon={<img src="/images/service-card-gear.png" alt="Default Icon" />}
         title="Tech services"
         description="Have us build your software solutions"
       />
