@@ -25,11 +25,11 @@ const Home = () => {
 
       {/* <StatisticCardDemo /> */}
 
-      <ExpertCardDemo />
+      {/* <ExpertCardDemo /> */}
+
+      <StepCardDemo />
 
       {/* <BannerDemo /> */}
-
-      {/* <StepCardDemo /> */}
 
       {/* <SimpleCardDemo /> */}
 
