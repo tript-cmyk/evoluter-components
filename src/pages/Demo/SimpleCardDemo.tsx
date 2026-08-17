@@ -1,6 +1,5 @@
 import SimpleCard from "../../components/layout/SimpleCard";
 
-
 const SimpleCardDemo = () => {
   return (
     <div>
