@@ -1,4 +1,5 @@
 import BenefitCard from "../components/layout/BenefitCard";
+import { BannerDemo } from "./Demo/BannerDemo";
 import BenefitCardDemo from "./Demo/BenefitCardDemo";
 import BenefitImageCardDemo from "./Demo/BenefitImageCardDemo";
 import BioCardDemo from "./Demo/BioCardDemo";
@@ -45,13 +46,13 @@ const Home = () => {
 
       {/* <CaseStudyCardDemo /> */}
 
-      <SimpleCaseStudyCardDemo />
-
-      {/* <BannerDemo /> */}
+      {/* <SimpleCaseStudyCardDemo /> */}
 
       {/* <ProjectCardDemo /> */}
 
-      {/* <TestimonialCardDemo /> */}
+      {/* <BannerDemo /> */}
+
+      <TestimonialCardDemo />
     </div>
   );
 };

@@ -5,9 +5,9 @@ export const BannerDemo = () => {
     <div>
       <h2 className="font-bold text-2xl">Banner</h2>
       <Banner
-        title="Ready to get started?"
-        description="Join thousands of satisfied customers and experience the difference today."
-        buttonText="Get Started"
+        title="Or you can hire entire team"
+        description="The best part? Your new tech team co-pilots your product with our suite of AI to provide increased productivity, reduce expenses and solve complex business problems."
+        buttonText="Hire entire team"
         onActionClick={() => console.log("Banner clicked")}
       />
     </div>

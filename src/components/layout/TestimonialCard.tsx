@@ -12,7 +12,7 @@ const TestimonialCard = ({
   companyName,
 }: TestimonialCardProps) => {
   return (
-    <div className="sm:[clip-path:polygon(0_0,100%_0,100%_72%,85%_100%,0_100%)] max-w-70 sm:max-w-100 sm:p-8 bg-[#363636] text-white p-4 rounded-2xl">
+    <div className="sm:[clip-path:polygon(0_0,100%_0,100%_72%,85%_100%,0_100%)] max-w-65 sm:max-w-100 sm:p-8 bg-[#363636] text-white p-4 rounded-2xl">
       <div className="flex flex-col gap-3 items-start">
         <div className="text-[12px]">"{content}"</div>
         <div className="sm:flex sm:gap-2">

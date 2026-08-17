@@ -3,8 +3,8 @@ import { Button, BUTTON_VARIANTS } from "../ui/button";
 interface BannerProps {
   title: string;
   description: string;
+  buttonText?: string;
   onActionClick?: () => void;
-  buttonText: string;
 }
 
 const Banner = ({
@@ -14,13 +14,16 @@ const Banner = ({
   onActionClick,
 }: BannerProps) => {
   return (
-    <div className="flex flex-col gap-6 p-4 items-center md:flex-row md:gap-40 md:p-8 border border-[#141414] rounded-xl hover:bg-[#ABFFC3] duration-700">
-      <div>
-        <h2>{title}</h2>
-        <div>{description}</div>
+    <div className="flex flex-col gap-6 p-4 items-center max-w-70 sm:max-w-250 sm:flex-row sm:gap-40 sm:p-8 border border-[#141414] rounded-xl hover:bg-[#ABFFC3] duration-300">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-[20px] sm:text-[24px] font-bold">{title}</h2>
+        <div className="text-[14px]">{description}</div>
       </div>
-      <div>
-        <Button variant={BUTTON_VARIANTS.OUTLINE} onClick={() => onActionClick?.()}>
+      <div className="w-full sm:w-fit">
+        <Button
+          variant={BUTTON_VARIANTS.OUTLINE}
+          onClick={() => onActionClick?.()}
+        >
           {buttonText}
         </Button>
       </div>
